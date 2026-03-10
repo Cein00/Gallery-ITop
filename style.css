@@ -1,0 +1,238 @@
+/* Переменные для тем */
+:root {
+    --bg-app: #ffffff;
+    --bg-main: #d9d9d9;
+    --bg-card: #b0b0b0;
+    --bg-image: #ffffff;
+    --bg-search: #b0b0b0;
+    --text-main: #000000;
+    --color-glow: rgba(138, 43, 226, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-app: #1a1a1a;
+        --bg-main: #2d2d2d;
+        --bg-card: #3d3d3d;
+        --bg-image: #505050;
+        --bg-search: #3d3d3d;
+        --text-main: #ffffff;
+        --color-glow: rgba(63, 35, 87, 0.55);
+    }
+}
+
+/* Базовые стили */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+.app-container {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: calc(100vh - 80px); /* Чтобы контейнер занимал почти весь экран */
+}
+
+/* Навигация */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-top: 20px;
+    min-width: 60px;
+    /* Чтобы иконки не уезжали вверх при скролле на десктопе */
+    position: sticky;
+    top: 40px; 
+    height: fit-content;
+}
+
+.icon {
+    width: 50px;           /* Размер круга */
+    height: 50px;
+    background-color: var(--bg-card); /* Цвет круга подстраивается под тему */
+    border-radius: 50%;    /* Делаем идеально круглым */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-main);
+}
+.icon img {
+    width: 60%;          /* Картинка будет занимать 60% от круга */
+    height: 60%;         /* Чтобы сохранялись пропорции */
+    object-fit: contain; /* Картинка не будет растягиваться или сжиматься некрасиво */
+}
+
+.icon:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2); /* Слегка подсвечиваем при наведении */
+}
+
+/* Основной контент (серый блок) */
+.main-content {
+    flex-grow: 1;
+    background-color: var(--bg-main);
+    border-radius: 40px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content; /* Серый блок облегает картинки и не тянется лишним вниз */
+    position: relative;
+    /* Убедимся, что фон блока непрозрачный, чтобы перекрыть свечение внутри */
+    background-color: var(--bg-main); 
+    /* Немного скруглим углы сильнее, если нужно, для мягкости */
+    border-radius: 40px;
+}
+.main-content::before {
+    content: ""; /* Обязательно для псевдоэлемента */
+    position: absolute;
+    /* Размещаем подложку ЗА основным блоком */
+    top: -15px;  /* Выходит за границы сверху */
+    left: -15px; /* Выходит за границы слева */
+    right: -15px; /* Выходит за границы справа */
+    bottom: -15px; /* Выходит за границы снизу */
+    
+    /* Основной эффект свечения: сильное размытие и фиолетовый цвет */
+    background: var(--color-glow);
+    filter: blur(40px); /* Сильное размытие создает мягкий хаотичный ореол */
+    border-radius: 50px; /* Скругление чуть больше, чем у самого блока */
+    
+    /* Помещаем псевдоэлемент НАД фоном страницы, но ПОД контентом блока */
+    z-index: -1; 
+    
+    /* Анимация пульсации (опционально, для большей "хаотичности") */
+    animation: glow-pulse 4s infinite alternate;
+}
+@keyframes glow-pulse {
+    0% {
+        filter: blur(35px);
+        opacity: 0.8;
+    }
+    100% {
+        filter: blur(50px);
+        opacity: 1;
+        transform: scale(1.02); /* Слегка увеличивается */
+    }
+}
+
+header h1 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-bar {
+    background-color: var(--bg-search);
+    border-radius: 30px;
+    padding: 10px 20px; /* Немного увеличим внутренние отступы для высоты */
+    
+    /* ИЗМЕНЕНИЯ ТУТ: */
+    width: 90%;          /* Теперь занимает почти всю ширину контента */
+    max-width: 800px;    /* Но не становится слишком огромным на сверхшироких экранах */
+    
+    margin: 0 auto 40px auto;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.search-bar input {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: inherit;
+    font-size: 0.9rem;
+}
+.search-icon {
+    width: 35px;
+    height: 35px;
+    background-color: #4a4a4a; /* Темный кружок для лупы */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    flex-shrink: 0;           /* Чтобы кружок не сплющивался */
+}
+.search-icon img {
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+}
+
+
+/* Сетка (самое важное) */
+.gallery-grid {
+    display: grid;
+    /* Картинки сами решают, сколько их влезет в ряд, минимум 250px */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border-radius: 25px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-placeholder {
+    background-color: var(--bg-image);
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+.user-name {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Адаптив для мобилок */
+@media (max-width: 768px) {
+    /* 1. Главный контейнер меняет направление на колонку */
+    .app-container {
+        flex-direction: column; 
+        align-items: center;    /* Центрируем меню и контент */
+        padding: 10px;
+        gap: 20px;
+    }
+
+    /* 2. Меню выстраивается в ряд и занимает всю ширину */
+    .sidebar {
+        flex-direction: row;    /* Иконки в ряд */
+        justify-content: center;
+        width: 100%;
+        min-width: auto;
+        padding: 10px 0;
+        position: static;       /* Или sticky, если хочешь, чтобы меню не уезжало */
+    }
+
+    /* 3. Защита иконок от сплющивания */
+    .icon {
+        flex-shrink: 0;         /* ЗАПРЕЩАЕТ сжимать круг */
+        width: 50px;            /* Фиксируем размер */
+        height: 50px;
+    }
+
+    /* 4. Растягиваем основной блок на всю ширину */
+    .main-content {
+        width: 100%;
+        box-sizing: border-box; /* Чтобы padding не раздувал блок */
+    }
+}
+
