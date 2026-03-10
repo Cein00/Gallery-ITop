@@ -193,13 +193,14 @@ header h1 {
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .user-name {
     font-weight: bold;
     font-size: 0.9rem;
     margin: 0;
+    margin-top: 10px;
 }
 
 /* Адаптив для мобилок */
@@ -236,3 +237,167 @@ header h1 {
     }
 }
 
+/* ************************************** */
+/* Шапка профиля */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.profile-avatar {
+    width: 110px;
+    height: 110px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.profile-avatar img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+}
+.user-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Карточка с инфо — используем цвета поиска */
+.profile-info-card {
+    background-color: var(--bg-search);
+    padding: 40px;
+    border-radius: 40px;
+    
+    /* Делаем пошире, но не на весь экран */
+    width: 100%;
+    max-width: 600px; 
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирует всё содержимое */
+    text-align: center;
+}
+
+.user-nickname {
+    font-size: 1.6rem;
+    margin: 0 0 5px 0;
+}
+
+.user-group {
+    margin: 0 0 20px 0;
+    opacity: 0.7;
+}
+
+/* Контейнер для соцсетей */
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+/* Сами кнопки-кружочки (состояние ПО УМОЛЧАНИЮ) */
+.social-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #414141; /* Цвет подложки */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+/* Иконки внутри кружков */
+.social-icon img {
+    width: 25px;
+    filter: brightness(0) invert(1);
+}
+
+/* Состояние ПРИ НАВЕДЕНИИ (hover) */
+.social-icon:hover {
+    background-color: #8a2be2;
+    transform: translateY(-3px); /* Легкий эффект прыжка при наведении */
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: normal;
+}
+
+/* Адаптив для профиля */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-info-card {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+/* Большой овал-контейнер для всех работ */
+
+/* Сетка внутри овала */
+.gallery-grid {
+    display: grid;
+    /* Центрируем сами колонки внутри овала */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 30px;
+    width: 100%;
+    justify-content: center;
+    align-items: center; /* Выравнивание по вертикали в ряду */
+}
+
+/* Сами карточки работ (тоже со скруглениями) */
+.card {
+    background-color: #3d3d3d;
+    border-radius: 35px;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    
+    /* Центрируем содержимое (image-placeholder) строго посередине */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 15px;       /* Одинаковый зазор от обводки до картинки */
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    border: 2px solid transparent; /* Та самая обводка */
+}
+
+.card:hover {
+    transform: scale(1.02);
+    border-color: #8a2be2; /* Фиолетовая обводка */
+}
+
+/* Заполнитель для картинки */
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #555;
+    border-radius: 25px; /* Чуть меньше, чем у карточки */
+    display: block;
+}
+
+.works-oval-container {
+    background-color: var(--bg-search);
+    border-radius: 60px;
+    padding: 50px;       /* Равномерный отступ со всех сторон */
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
