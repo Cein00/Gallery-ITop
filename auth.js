@@ -234,3 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// Мгновенная установка темы при загрузке любой страницы
+(function() {
+    const savedTheme = localStorage.getItem('theme') || 'system';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+})();

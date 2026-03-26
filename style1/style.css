@@ -7,11 +7,6 @@
     --bg-search: #b0b0b0;
     --text-main: #000000;
     --color-glow: rgba(138, 43, 226, 0.25);
-
-    /* Для стеклянной панели */
-    --glass-bg: rgba(255, 255, 255, 0.5);
-    /* Иконки в светлой теме – тёмные */
-    --icon-filter: none;
 }
 
 /* Темная тема (активируется через JS) */
@@ -23,9 +18,6 @@
     --bg-search: #3d3d3d;
     --text-main: #ffffff;
     --color-glow: rgba(63, 35, 87, 0.55);
-
-    --glass-bg: rgba(0, 0, 0, 0.3);
-    --icon-filter: brightness(0) invert(1);
 }
 
 /* Системная тема */
@@ -38,9 +30,6 @@
         --bg-search: #3d3d3d;
         --text-main: #ffffff;
         --color-glow: rgba(63, 35, 87, 0.55);
-
-        --glass-bg: rgba(0, 0, 0, 0.3);
-        --icon-filter: brightness(0) invert(1);
     }
 }
 
@@ -246,7 +235,6 @@ body {
     width: 60%;          /* Картинка будет занимать 60% от круга */
     height: 60%;         /* Чтобы сохранялись пропорции */
     object-fit: contain; /* Картинка не будет растягиваться или сжиматься некрасиво */
-    filter: var(--icon-filter);
 }
 
 .icon:hover {
@@ -493,7 +481,7 @@ header h1 {
 /* Иконки внутри кружков */
 .social-icon img {
     width: 25px;
-    filter: var(--icon-filter);
+    filter: brightness(0) invert(1);
 }
 
 /* Состояние ПРИ НАВЕДЕНИИ (hover) */
@@ -594,7 +582,13 @@ header h1 {
     box-sizing: border-box;
     position: relative;
     overflow: hidden; /* Чтобы свечение не создавало скролл */
-    background-color: #121212; /* Оставляем темный фон для логина */
+}
+
+/* Фон страницы - делаем чуть темнее для контраста */
+body {
+    background-color: #121212; /* Очень темный, почти черный */
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif; /* Более современный шрифт */
 }
 
 /* Мягкое неоновое свечение позади формы */
@@ -1001,14 +995,14 @@ header h1 {
 
 /* Настройка фона для всей страницы поиска */
 .search-page-body {
-    background-color: var(--bg-app); /* теперь подстраивается под тему */
+    background-color: #121212;
     overflow-x: hidden;
     position: relative;
 }
 
 /* Стеклянная панель основного контента */
 .main-content.glass-panel {
-    background: var(--glass-bg) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1118,7 +1112,7 @@ header h1 {
     width: 50%;
     height: 50%;
     object-fit: contain;
-    filter: var(--icon-filter);
+    filter: brightness(0) invert(1); /* Делаем их белыми под темную тему */
     opacity: 0.7;
     transition: 0.3s;
 }
@@ -1170,11 +1164,8 @@ header h1 {
 }
 
 .profile-avatar-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
+    width: 70%;
+    filter: brightness(0) invert(1);
 }
 
 /* Кнопка изменить */
@@ -1204,7 +1195,7 @@ header h1 {
 
 .icon-small img {
     width: 20px;
-    filter: var(--icon-filter);
+    filter: brightness(0) invert(1);
 }
 
 .icon-small:hover {
@@ -1429,19 +1420,9 @@ header h1 {
 }
 
 .modal-avatar {
-    width: 100px !important; /* Чуть меньше в модалке */
+    width: 100px !important;
     height: 100px !important;
-    background: none !important; /* УБИРАЕМ БЕЛЫЙ ФОН */
     border-color: #8a2be2 !important;
-    margin-bottom: 0 !important; /* Убираем отступ снизу */
-}
-
-.modal-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
 }
 
 .upload-btn {
@@ -1464,6 +1445,39 @@ header h1 {
 @keyframes slideInModal {
     from { opacity: 0; transform: translateY(-50px) scale(0.9); }
     to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-avatar {
+    width: 100px !important; /* Чуть меньше в модалке */
+    height: 100px !important;
+    background: none !important; /* УБИРАЕМ БЕЛЫЙ ФОН */
+    border-color: #8a2be2 !important;
+    margin-bottom: 0 !important; /* Убираем отступ снизу */
+}
+
+.modal-avatar img {
+    width: 100%; /* Картинка занимает ВСЁ место */
+    height: 100%;
+    object-fit: cover; /* Картинка масштабируется, заполняя круг, не растягиваясь */
+    border-radius: 50%; /* Идеальный круг */
+}
+
+.profile-avatar-wrapper img {
+    /* Эти два свойства решают твою проблему */
+    width: 100%;       /* Картинка растягивается по ширине контейнера */
+    height: 100%;      /* Картинка растягивается по высоте контейнера */
+    object-fit: cover; /* МАГИЯ: Картинка заполняет весь круг, сохраняя пропорции, лишнее обрезается */
+    
+    /* Дополнительные важные свойства */
+    border-radius: 50%; /* Делаем саму картинку тоже круглой */
+    display: block;    /* Убираем странные отступы снизу */
+}
+
+.modal-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* То же самое свойство для модалки */
+    border-radius: 50%;
+    display: block;
 }
 
 /* Шапка топа */
