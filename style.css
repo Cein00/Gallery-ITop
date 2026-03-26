@@ -954,3 +954,503 @@ body {
     z-index: 1;
     background-color: #121212; /* Твой темный фон из новой секции */
 }
+
+.guest-button {
+    background: rgba(255, 255, 255, 0.05) !important; /* Почти прозрачная */
+    border: 1px solid rgba(138, 43, 226, 0.4) !important; /* Фиолетовая кайма */
+    box-shadow: none !important;
+    margin-top: -10px; /* Немного прижмем к основной кнопке */
+}
+
+.guest-button:hover {
+    background: rgba(138, 43, 226, 0.1) !important;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.2) !important;
+}
+
+/* Настройка фона для всей страницы поиска */
+.search-page-body {
+    background-color: #121212;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Стеклянная панель основного контента */
+.main-content.glass-panel {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-radius: 40px;
+    padding: 40px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Обновленная строка поиска */
+.search-bar-modern {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 12px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+}
+
+.search-bar-modern:focus-within {
+    border-color: #8a2be2;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+}
+
+.search-bar-modern input {
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    width: 100%;
+    margin-left: 15px;
+    font-size: 1rem;
+}
+
+/* Современные карточки работ */
+.card-modern {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 25px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    text-align: center;
+}
+
+.card-modern:hover {
+    transform: translateY(-8px);
+    border-color: #8a2be2;
+    background: rgba(138, 43, 226, 0.05);
+}
+
+.image-wrapper {
+    overflow: hidden;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+.card-modern .user-name {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+    color: #fff;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Боковая панель (сайдбар) */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-top: 20px;
+    min-width: 80px;
+    position: sticky;
+    top: 40px;
+    height: fit-content;
+    z-index: 10;
+}
+
+/* Те самые кружочки */
+.icon {
+    width: 60px;
+    height: 60px;
+    /* Делаем круг стеклянным, как основную панель */
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    border-radius: 50%; /* Идеальный круг */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Плавный отскок */
+    position: relative;
+}
+
+/* Иконки внутри кружков */
+.icon img {
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* Делаем их белыми под темную тему */
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+/* Эффект при наведении на кружок */
+.icon:hover {
+    transform: scale(1.1);
+    background: rgba(138, 43, 226, 0.2); /* Фиолетовый оттенок */
+    border-color: #8a2be2;
+    /* Неоновое свечение вокруг кружка */
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+}
+
+.icon:hover img {
+    opacity: 1;
+    transform: rotate(5deg); /* Легкий игривый поворот */
+}
+
+/* Активное состояние (если нужно выделить, где мы сейчас) */
+.icon.active {
+    background: #8a2be2;
+    border-color: #8a2be2;
+    box-shadow: 0 0 25px rgba(138, 43, 226, 0.6);
+}
+
+.icon.active img {
+    opacity: 1;
+}
+
+/* Карточка профиля в новом стиле */
+.profile-info-card-modern {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.profile-avatar-wrapper {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #8a2be2;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+}
+
+.profile-avatar-wrapper img {
+    width: 70%;
+    filter: brightness(0) invert(1);
+}
+
+/* Кнопка изменить */
+.edit-btn {
+    margin-top: 25px;
+    font-size: 0.8rem !important;
+    padding: 12px 25px !important;
+}
+
+/* Маленькие кружочки соцсетей */
+.social-links-modern {
+    display: flex;
+    gap: 15px;
+}
+
+.icon-small {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.icon-small img {
+    width: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.icon-small:hover {
+    background: #8a2be2;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+}
+/* Контейнер шапки */
+.profile-header-visual {
+    position: relative;
+    margin-bottom: 60px; /* Отступ для аватара, который вылезает за край */
+}
+
+/* Обложка (тот самый бампер) */
+.profile-cover {
+    height: 180px;
+    width: 100%;
+    background: linear-gradient(135deg, #1a1a1a, #4b0082, #8a2be2);
+    border-radius: 25px 25px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/pattern.png'); /* Если есть паттерн, будет круто */
+    opacity: 0.2;
+}
+
+/* Блок с данными под обложкой */
+.profile-main-info {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 40px;
+    margin-top: -60px; /* Выносим аватар наверх на обложку */
+    gap: 25px;
+}
+
+.avatar-container {
+    position: relative;
+}
+
+.profile-avatar-wrapper {
+    width: 130px;
+    height: 130px;
+    background: #2d2d2d;
+    border: 5px solid rgba(138, 43, 226, 0.5); /* Фиолетовый ободок */
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+/* Кнопка изменить в виде маленького кружочка */
+.edit-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    background: #8a2be2;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.edit-badge:hover {
+    transform: scale(1.1) rotate(15deg);
+    background: #a04ef2;
+}
+
+.edit-badge img {
+    width: 18px;
+    filter: brightness(0) invert(1);
+}
+
+/* Текст профиля */
+.profile-text-data {
+    padding-bottom: 10px;
+}
+
+.profile-text-data h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* Мини-статистика справа */
+.profile-stats-mini {
+    margin-left: auto;
+    display: flex;
+    gap: 30px;
+    padding-bottom: 15px;
+}
+
+.stat-item {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-item span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.user-nickname {
+    font-size: 2rem;
+    margin: 0;
+    color: #fff;
+    font-weight: 800;
+}
+
+.user-role-label {
+    font-size: 1rem;
+    color: #8a2be2; /* Фиолетовый акцент на роль */
+    margin: 5px 0 0 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.section-title {
+    margin: 40px 0 20px 0;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    opacity: 0.6;
+}
+
+/* Карточки без лишнего текста, только картинка */
+.card-modern {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.3s;
+}
+
+.card-modern:hover {
+    border-color: #8a2be2;
+    transform: translateY(-5px);
+}
+#profileEdit {
+    padding: 20px 40px;
+    animation: fadeIn 0.4s ease-out; /* Чтобы плавно появлялось */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Оверлей (затемнение и размытие фона всей страницы) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Затемнение */
+    backdrop-filter: blur(15px); /* ТОО САМОЕ размытие фона */
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 1000; /* Поверх всего */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInOverlay 0.3s ease;
+}
+
+/* Стеклянная карточка самого окна */
+.modal-glass-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(25px); /* Двойное размытие внутри */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 60px 50px;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: slideInModal 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Анимация «вылета» */
+}
+
+/* Кнопка закрытия (крестик) */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover {
+    color: #8a2be2;
+    transform: rotate(90deg);
+}
+
+/* Стилизация секции аватара в модельном окне */
+.edit-avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.modal-avatar {
+    width: 100px !important;
+    height: 100px !important;
+    border-color: #8a2be2 !important;
+}
+
+.upload-btn {
+    font-size: 0.8rem !important;
+    padding: 10px 20px !important;
+}
+
+/* Настройка кнопок в модалке */
+.modal-actions .button-modern {
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* Анимации */
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInModal {
+    from { opacity: 0; transform: translateY(-50px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-avatar {
+    width: 100px !important; /* Чуть меньше в модалке */
+    height: 100px !important;
+    background: none !important; /* УБИРАЕМ БЕЛЫЙ ФОН */
+    border-color: #8a2be2 !important;
+    margin-bottom: 0 !important; /* Убираем отступ снизу */
+}
+
+.modal-avatar img {
+    width: 100%; /* Картинка занимает ВСЁ место */
+    height: 100%;
+    object-fit: cover; /* Картинка масштабируется, заполняя круг, не растягиваясь */
+    border-radius: 50%; /* Идеальный круг */
+}
+
+.profile-avatar-wrapper img {
+    /* Эти два свойства решают твою проблему */
+    width: 100%;       /* Картинка растягивается по ширине контейнера */
+    height: 100%;      /* Картинка растягивается по высоте контейнера */
+    object-fit: cover; /* МАГИЯ: Картинка заполняет весь круг, сохраняя пропорции, лишнее обрезается */
+    
+    /* Дополнительные важные свойства */
+    border-radius: 50%; /* Делаем саму картинку тоже круглой */
+    display: block;    /* Убираем странные отступы снизу */
+}
+
+.modal-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* То же самое свойство для модалки */
+    border-radius: 50%;
+    display: block;
+}
+

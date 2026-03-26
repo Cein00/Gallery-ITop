@@ -148,3 +148,89 @@ if (regForm) {
         }, 2000);
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Элементы
+    const modal = document.getElementById('profileEditModal');
+    const openBtn = document.getElementById('openEditBtn'); // Твоя шестеренка
+    const closeBtn = document.getElementById('closeModalBtn');
+    const avatarUpload = document.getElementById('avatarUpload');
+    const avatarPreview = document.getElementById('editAvatarPreview');
+
+    // 1. ОТКРЫТИЕ ПОПАПА
+    if (openBtn && modal) {
+        openBtn.addEventListener('click', () => {
+            modal.style.display = 'flex'; // Показываем оверлей
+            
+            // Заполняем поле логина текущим значением
+            const currentNick = document.getElementById('displayNickname').innerText.replace('@', '');
+            document.getElementById('editNickname').value = currentNick;
+        });
+    }
+
+    // 2. ЗАКРЫТИЕ ПОПАПА
+    // По клику на крестик
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    }
+
+    // По клику на фон (вне карточки)
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
+
+    // 3. ПРЕВЬЮ АВАТАРА (при выборе файла)
+    if (avatarUpload && avatarPreview) {
+        avatarUpload.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    avatarPreview.src = e.target.result; // Меняем превью в модалке
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // 4. СОХРАНЕНИЕ (Обработка формы)
+    const form = document.getElementById('editProfileForm');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Не перезагружаем страницу
+
+            const newNick = document.getElementById('editNickname').value;
+            const newPass = document.getElementById('editPass').value;
+            const newPassConfirm = document.getElementById('editPassConfirm').value;
+            const newAvatarSrc = avatarPreview.src;
+
+            // Валидация пароля (твои правила из регистрации)
+            if (newPass.length > 0) {
+                const passRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+                if (!passRegex.test(newPass)) {
+                    showToast("Пароль: 8+ знаков, заглавная и цифра!");
+                    return;
+                }
+                if (newPass !== newPassConfirm) {
+                    showToast("Пароли не совпадают!");
+                    return;
+                }
+            }
+
+            // ПРИМЕНЯЕМ ИЗМЕНЕНИЯ К СТРАНИЦЕ
+            if (newNick) document.getElementById('displayNickname').innerText = '@' + newNick;
+            if (avatarPreview.src !== '../img/user.png') {
+                document.getElementById('displayAvatar').src = newAvatarSrc;
+            }
+
+            showToast("Профиль обновлен!");
+            modal.style.display = 'none'; // Закрываем окно
+        });
+    }
+});
