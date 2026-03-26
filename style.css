@@ -541,3 +541,416 @@ header h1 {
     display: flex;
     justify-content: center;
 }
+
+/* ========================================= */
+/* НОВЫЙ ДИЗАЙН ДЛЯ ЛОГИНА/РЕГИСТРАЦИИ        */
+/* ========================================= */
+
+/* Специфический body для центрирования (оставляем твой) */
+.login-body {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100vh !important;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden; /* Чтобы свечение не создавало скролл */
+}
+
+/* Фон страницы - делаем чуть темнее для контраста */
+body {
+    background-color: #121212; /* Очень темный, почти черный */
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif; /* Более современный шрифт */
+}
+
+/* Мягкое неоновое свечение позади формы */
+.login-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.4) 0%, rgba(138, 43, 226, 0) 70%);
+    filter: blur(80px);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none; /* Чтобы не мешало кликать */
+}
+
+/* Карточка ("Стекло") */
+.login-card {
+    background: rgba(255, 255, 255, 0.03); /* Ультра-прозрачный белый */
+    backdrop-filter: blur(20px); /* Матовое стекло */
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Очень тонкая граница */
+    padding: 60px 50px;
+    border-radius: 30px; /* Чуть меньше скругление, более строго */
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1; /* Поверх свечения */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-5px); /* Легкий прыжок */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Шапка */
+.login-header {
+    text-align: center;
+    margin-bottom: 50px;
+    background: none; /* Убираем серый овал */
+    padding: 0;
+}
+
+.login-header h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--text-main);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.login-header p {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: var(--text-main);
+    opacity: 0.6;
+}
+
+/* Группа полей */
+.input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Больше расстояние */
+    margin-bottom: 50px;
+}
+
+/* СОВРЕМЕННОЕ ПОЛЕ ВВОДА */
+.input-modern {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Тонкая полоса снизу */
+    padding: 15px 0;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+/* Эффект при клике на поле */
+.input-modern:focus-within {
+    border-color: #8a2be2; /* Фиолетовая полоса */
+    /* Тонкое неоновое свечение полосы */
+    box-shadow: 0 1px 0 #8a2be2, 0 5px 10px rgba(138, 43, 226, 0.2);
+}
+
+/* Иконки внутри полей */
+.input-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    opacity: 0.4; /* Полупрозрачные */
+    transition: 0.3s;
+    filter: brightness(0) invert(1); /* Делаем иконки белыми */
+}
+
+.input-modern:focus-within .input-icon {
+    opacity: 1; /* Яркие при фокусе */
+    filter: none; /* Убираем инверсию, если иконка цветная, или оставляем */
+}
+
+/* Сам input */
+.input-modern input {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: var(--text-main);
+    font-size: 1rem;
+    font-family: inherit;
+    box-sizing: border-box
+}
+
+.input-modern input::placeholder {
+    color: var(--text-main);
+    opacity: 0.4;
+}
+
+/* Специфика для полей с паролем (для глазика) */
+.password-field {
+    padding-right: 40px; /* Место для глаза */
+}
+
+.eye-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: 0.3s;
+    filter: brightness(0) invert(1);
+}
+
+.eye-icon:hover {
+    opacity: 1;
+}
+
+/* ========================================= */
+/* КАСТОМНЫЙ SELECT (JS) - СТИЛИ             */
+/* ========================================= */
+
+.custom-select {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Триггер (то, что видит пользователь) */
+.select-trigger {
+    justify-content: space-between; /* Текст слева, стрелка справа */
+}
+
+.select-trigger span {
+    flex-grow: 1;
+    color: var(--text-main);
+    opacity: 0.4;
+}
+
+/* Если значение выбрано (добавим класс через JS) */
+.select-trigger.selected span {
+    opacity: 1;
+}
+
+.arrow-icon {
+    width: 12px;
+    transition: 0.3s ease;
+    filter: brightness(0) invert(1);
+    opacity: 0.4;
+}
+
+/* Когда список открыт (класс через JS) */
+.custom-select.open .arrow-icon {
+    transform: rotate(180deg);
+    opacity: 1;
+}
+
+/* Выпадающий список с опциями */
+.select-options {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+    background: rgba(30, 30, 30, 0.9); /* Темный, плотный фон */
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: 0.3s ease;
+    z-index: 100;
+    overflow: hidden; /* Чтобы скругления работали */
+}
+
+.custom-select.open .select-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Сами пункты списка */
+.select-options .option {
+    padding: 15px 20px;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    transition: 0.2s;
+}
+
+.select-options .option:hover {
+    background-color: rgba(138, 43, 226, 0.1); /* Легкий фиолетовый фон */
+    color: #ffffff;
+}
+
+/* Выбранный пункт (добавим класс через JS) */
+.select-options .option.selected {
+    background-color: #8a2be2;
+    color: #ffffff;
+}
+
+/* ========================================= */
+/* КНОПКИ                                    */
+/* ========================================= */
+
+.action-buttons {
+    width: 100%;
+}
+
+/* Горизонтальное расположение кнопок */
+.horizontal-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+/* СОВРЕМЕННАЯ КНОПКА ВОЙТИ */
+.button-modern {
+    background: linear-gradient(135deg, #8a2be2 0%, #9932cc 100%); /* Градиент */
+    padding: 18px 30px;
+    border-radius: 15px; /* Прямоугольная со скруглением */
+    text-decoration: none;
+    color: #ffffff !important;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3); /* Тень в цвет */
+    text-align: center;
+}
+
+.button-modern:hover {
+    transform: translateY(-2px); /* Прыжок */
+    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.5); /* Ярче тень */
+}
+
+/* Ссылка (Назад/Войти) */
+.button-link {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    opacity: 0.6;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.button-link:hover {
+    opacity: 1;
+    color: #8a2be2;
+}
+
+/* ========================================= */
+/* 1. Стилизация выпадающего списка (Select) */
+/* ========================================= */
+
+/* Стили для самого поля выбора (овала) */
+.input-oval select {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: inherit; /* Наследует белый цвет текста из темы */
+    font-size: 0.9rem;
+    font-family: inherit;
+    cursor: pointer;
+    /* Убираем дефолтную стрелочку, чтобы она не мешала */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Стили для выпадающего списка (самое важное!) */
+/* К сожалению, браузеры плохо поддаются стилизации 'option', 
+   но мы зададим им темный фон */
+.input-oval select option {
+    background-color: var(--bg-app); /* Темный фон приложения */
+    color: var(--text-main);          /* Белый текст */
+    padding: 10px;
+}
+
+/* ========================================= */
+/* 2. Стили для неонового Toast-уведомления   */
+/* ========================================= */
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    
+    /* Цвет: чуть светлее фона, как ты и хотела (берем --bg-card) */
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    
+    padding: 20px 30px;
+    border-radius: 20px;
+    z-index: 1000;
+    font-weight: bold;
+    font-size: 0.9rem;
+    
+    /* Тонкая фиолетовая рамочка */
+    border: 2px solid #8a2be2;
+    
+    /* НЕОНОВОЕ ОБРАМЛЕНИЕ (Свечение) */
+    /* Используем box-shadow с размытием в цвет рамки */
+    box-shadow: 
+        0 0 10px rgba(138, 43, 226, 0.6), /* Внутреннее мягкое */
+        0 0 20px rgba(138, 43, 226, 0.4), /* Среднее */
+        0 0 30px rgba(138, 43, 226, 0.2); /* Внешнее хаотичное */
+
+    /* Включаем анимацию (см. ниже) */
+    animation: toastSlideIn 0.5s ease forwards;
+}
+
+/* ========================================= */
+/* 3. Анимации                              */
+/* ========================================= */
+
+/* Анимация плавного появления и выезда справа */
+@keyframes toastSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(100%); /* Начинаем за экраном */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);    /* Встаем на место */
+    }
+}
+
+/* Анимация плавного исчезновения */
+@keyframes toastFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(50%); /* Чуть уезжаем */
+    }
+}
+
+/* Дополнительный стиль для расположения кнопок именно на входе */
+.vertical-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Убедимся, что кнопка на входе занимает достаточную ширину */
+.vertical-buttons .button-modern {
+    width: 100%;
+    max-width: 280px;
+}
+
+/* Чтобы свечение на фоне работало правильно, убедись что у login-body есть z-index */
+.login-body {
+    position: relative;
+    z-index: 1;
+    background-color: #121212; /* Твой темный фон из новой секции */
+}
