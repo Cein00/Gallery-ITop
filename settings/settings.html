@@ -23,24 +23,29 @@
             </header>
 
             <section class="settings-section">
-                <h3>ВНЕШНИЙ ВИД</h3>
-                <div class="theme-switcher">
-                    <button class="theme-btn" data-theme-val="light">СВЕТЛАЯ</button>
-                    <button class="theme-btn" data-theme-val="dark">ТЕМНАЯ</button>
-                    <button class="theme-btn" data-theme-val="system">СИСТЕМНАЯ</button>
+                <!-- Внешний вид -->
+                <div class="settings-block">
+                    <h3>ВНЕШНИЙ ВИД</h3>
+                    <div class="theme-switcher">
+                        <button class="theme-btn" data-theme-val="light">СВЕТЛАЯ</button>
+                        <button class="theme-btn" data-theme-val="dark">ТЕМНАЯ</button>
+                        <button class="theme-btn" data-theme-val="system">СИСТЕМНАЯ</button>
+                    </div>
                 </div>
-            </section>
 
-            <section class="settings-section danger-zone">
-                <h3>АККАУНТ</h3>
-                <div class="action-buttons vertical-buttons">
-                    <button class="button-modern secondary-button" id="logoutBtn">ВЫЙТИ ИЗ АККАУНТА</button>
-                    <button class="button-link danger-text" id="deleteAccBtn">Удалить аккаунт</button>
+                <!-- Аккаунт -->
+                <div class="settings-block">
+                    <h3>АККАУНТ</h3>
+                    <div class="account-actions">
+                        <button class="button-modern secondary-button" id="logoutBtn">ВЫЙТИ ИЗ АККАУНТА</button>
+                        <button class="button-modern delete-account-btn" id="deleteAccBtn">УДАЛИТЬ АККАУНТ</button>
+                    </div>
                 </div>
             </section>
         </main>
     </div>
 
+    <!-- Модальное окно (остаётся без изменений) -->
     <div class="modal-overlay" id="confirmModal" style="display: none;">
         <div class="modal-glass-card confirm-card">
             <h2 id="confirmTitle">ВЫ УВЕРЕНЫ?</h2>

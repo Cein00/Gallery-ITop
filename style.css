@@ -1872,3 +1872,326 @@ header h1 {
     transform: scale(1.1);
 }
 
+
+.search-header {
+    text-align: center;
+}
+.search-bar-modern {
+    margin: 0 auto 20px auto;
+}
+.upload-button-wrapper {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.upload-button {
+    display: inline-block;
+}
+@media (max-width: 768px) {
+    .upload-button {
+        width: auto;
+        padding: 12px 25px;
+    }
+}
+
+/* ===== ОБНОВЛЁННЫЕ НАСТРОЙКИ ===== */
+.settings-section {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    border-radius: 30px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.settings-block {
+    margin-bottom: 35px;
+}
+
+.settings-block:last-child {
+    margin-bottom: 0;
+}
+
+.settings-block h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: var(--text-main);
+    opacity: 0.8;
+}
+
+/* Переключатель тем */
+.theme-switcher {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.theme-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(138, 43, 226, 0.3);
+    border-radius: 40px;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: var(--text-main);
+    backdrop-filter: blur(4px);
+}
+
+.theme-btn:hover {
+    background: rgba(138, 43, 226, 0.2);
+    border-color: #8a2be2;
+    transform: translateY(-2px);
+}
+
+.theme-btn.active {
+    background: #8a2be2;
+    border-color: #8a2be2;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+}
+
+/* Кнопки аккаунта */
+.account-actions {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.account-actions .button-modern {
+    min-width: 200px;
+    text-align: center;
+}
+
+.delete-account-btn {
+    background: rgba(220, 53, 69, 0.15) !important;
+    border: 1px solid rgba(220, 53, 69, 0.5) !important;
+    color: #ff6b6b !important;
+    box-shadow: none !important;
+}
+
+.delete-account-btn:hover {
+    background: rgba(220, 53, 69, 0.3) !important;
+    border-color: #dc3545 !important;
+    color: #ff8888 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(220, 53, 69, 0.4) !important;
+}
+
+/* Модальное окно (стили уже есть, но убедимся) */
+.modal-overlay .modal-glass-card.confirm-card {
+    text-align: center;
+    max-width: 450px;
+    padding: 40px 30px;
+}
+
+.modal-glass-card h2 {
+    margin: 0 0 15px;
+    font-size: 1.6rem;
+    color: var(--text-main);
+}
+
+.modal-glass-card p {
+    margin: 0 0 30px;
+    color: var(--text-main);
+    opacity: 0.7;
+}
+
+.modal-glass-card .horizontal-buttons {
+    justify-content: center;
+    gap: 20px;
+}
+
+.modal-glass-card .button-modern {
+    padding: 12px 25px;
+    min-width: 140px;
+}
+
+.modal-glass-card .green-btn {
+    background: linear-gradient(135deg, #28a745, #20c997) !important;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.modal-glass-card .green-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .settings-section {
+        padding: 20px;
+    }
+    .theme-btn {
+        padding: 10px 18px;
+        font-size: 0.8rem;
+    }
+    .account-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .account-actions .button-modern {
+        width: 100%;
+        min-width: auto;
+    }
+    .modal-glass-card.confirm-card {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    .modal-glass-card .horizontal-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .modal-glass-card .button-modern {
+        width: 100%;
+    }
+}
+
+/* Модальное окно подтверждения — принудительно тёмный фон и белый текст */
+.modal-overlay .modal-glass-card.confirm-card {
+    background: rgba(20, 20, 30, 0.95) !important;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(138, 43, 226, 0.5);
+}
+
+.modal-glass-card.confirm-card h2,
+.modal-glass-card.confirm-card p,
+.modal-glass-card.confirm-card .button-link {
+    color: #ffffff !important;
+}
+
+.modal-glass-card.confirm-card .horizontal-buttons .button-modern {
+    background: linear-gradient(135deg, #28a745, #20c997) !important;
+    color: white !important;
+}
+
+.modal-glass-card.confirm-card .horizontal-buttons .button-link {
+    background: transparent !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.modal-glass-card.confirm-card .horizontal-buttons .button-link:hover {
+    color: #8a2be2 !important;
+}
+
+/* ===== СТИЛИ ДЛЯ СТРАНИЦЫ ЗАГРУЗКИ ===== */
+/* Общий контейнер загрузки */
+.upload-container {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Иконки в полях — в светлой теме чёрные */
+.upload-container .input-icon {
+    filter: var(--icon-filter);
+    transition: filter 0.3s;
+}
+
+/* Для светлой темы явно делаем чёрные иконки */
+:root .upload-container .input-icon,
+[data-theme="light"] .upload-container .input-icon {
+    filter: brightness(0) invert(0) !important;
+    opacity: 0.6;
+}
+[data-theme="dark"] .upload-container .input-icon {
+    filter: brightness(0) invert(1) !important;
+}
+
+/* Текстовые поля: стилизуем как стеклянные с чёткими границами */
+.upload-container .input-modern {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 12px 20px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(138, 43, 226, 0.3);
+    transition: 0.3s;
+}
+.upload-container .input-modern:focus-within {
+    border-color: #8a2be2;
+    box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Поля ввода и текстовая область */
+.upload-container input,
+.upload-container textarea {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: var(--text-main);
+    font-size: 1rem;
+    font-family: inherit;
+}
+.upload-container textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+.upload-container input::placeholder,
+.upload-container textarea::placeholder {
+    color: var(--text-main);
+    opacity: 0.5;
+}
+
+/* Динамические квадраты загрузки изображений */
+.images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.image-upload-card {
+    aspect-ratio: 1 / 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(138, 43, 226, 0.5);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.image-upload-card:hover {
+    border-color: #8a2be2;
+    background: rgba(138, 43, 226, 0.1);
+}
+.add-card .plus-icon {
+    font-size: 2.5rem;
+    color: rgba(138, 43, 226, 0.7);
+}
+.loaded-card {
+    border: 2px solid rgba(138, 43, 226, 0.6);
+    background: transparent;
+}
+.uploaded-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.delete-image {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    background: rgba(0,0,0,0.6);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+.delete-image:hover {
+    background: #ff4444;
+    transform: scale(1.1);
+}
