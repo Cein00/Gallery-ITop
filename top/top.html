@@ -72,5 +72,18 @@
             </div>
         </main>
     </div>
+
+    <script>
+    // Добавляем иконку просмотра профиля по клику (можно перенаправить)
+    document.querySelectorAll('.top-list-item').forEach(item => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => {
+            const name = item.querySelector('.list-name')?.innerText || 'пользователь';
+            alert(`Переход на профиль ${name} (демо)`);
+            // window.location.href = `../profile/profile.html?user=${name}`;
+        });
+    });
+    
+</script>
 </body>
 </html>

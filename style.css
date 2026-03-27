@@ -2195,3 +2195,268 @@ header h1 {
     background: #ff4444;
     transform: scale(1.1);
 }
+
+/* ===== УЛУЧШЕНИЕ СТРАНИЦЫ ТОПА ДЛЯ СВЕТЛОЙ ТЕМЫ ===== */
+/* Базовая настройка для светлой темы */
+:root,
+[data-theme="light"] {
+    --podium-bg: rgba(255, 255, 255, 0.5);
+    --podium-border: rgba(0, 0, 0, 0.1);
+    --podium-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    --podium-text: #1e272e;
+    --podium-accent: #8a2be2;
+    --list-item-bg: rgba(255, 255, 255, 0.3);
+    --list-item-hover: rgba(138, 43, 226, 0.1);
+}
+
+/* Улучшение для тёмной темы: подсветка элементов списка при наведении */
+[data-theme="dark"] .top-list-item {
+    background: rgba(255, 255, 255, 0.08); /* светлее фона, чтобы было видно */
+    transition: 0.2s;
+}
+[data-theme="dark"] .top-list-item:hover {
+    background: rgba(138, 43, 226, 0.3); /* фиолетовая подсветка */
+    box-shadow: 0 0 12px rgba(138, 43, 226, 0.3);
+    transform: translateX(5px); /* лёгкий сдвиг */
+}
+
+/* Убедимся, что лайки в тёмной теме хорошо видны (если ещё не задано) */
+[data-theme="dark"] .list-likes,
+[data-theme="dark"] .podium-likes {
+    color: #ffffff !important;
+    text-shadow: 0 0 3px rgba(138, 43, 226, 0.5);
+}
+
+/* Тёмная тема: все тексты в топе белые */
+[data-theme="dark"] .top-list-item .list-rank,
+[data-theme="dark"] .top-list-item .list-name,
+[data-theme="dark"] .top-list-item .list-role,
+[data-theme="dark"] .podium-name,
+[data-theme="dark"] .podium-likes {
+    color: #ffffff !important;
+}
+
+/* Убираем возможное затемнение фона при наведении — делаем подсветку фиолетовой */
+[data-theme="dark"] .top-list-item {
+    background: rgba(255, 255, 255, 0.08);
+    transition: 0.2s;
+}
+[data-theme="dark"] .top-list-item:hover {
+    background: rgba(138, 43, 226, 0.3);
+    box-shadow: 0 0 12px rgba(138, 43, 226, 0.3);
+    transform: translateX(5px);
+}
+
+/* Карточки пьедестала */
+.podium-item {
+    background: var(--podium-bg);
+    border: 1px solid var(--podium-border);
+    box-shadow: var(--podium-shadow);
+    backdrop-filter: blur(8px);
+}
+
+.podium-item.gold {
+    background: rgba(255, 215, 0, 0.15);
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.podium-item.silver {
+    background: rgba(192, 192, 192, 0.15);
+    border-color: rgba(192, 192, 192, 0.5);
+}
+
+.podium-item.bronze {
+    background: rgba(205, 127, 50, 0.15);
+    border-color: rgba(205, 127, 50, 0.5);
+}
+
+/* Имена и лайки */
+.podium-name {
+    color: var(--podium-text);
+    font-weight: 600;
+}
+
+.podium-likes {
+    color: var(--podium-accent);
+    font-weight: bold;
+}
+
+/* Список участников */
+.top-list-item {
+    background: var(--list-item-bg);
+    border: 1px solid var(--podium-border);
+    backdrop-filter: blur(4px);
+    transition: 0.3s;
+}
+
+.top-list-item:hover {
+    background: var(--list-item-hover);
+    transform: translateX(5px);
+}
+
+.list-rank,
+.list-name,
+.list-role {
+    color: var(--podium-text);
+}
+
+.list-role {
+    opacity: 0.6;
+}
+
+.list-likes {
+    color: var(--podium-accent);
+    font-weight: bold;
+}
+
+/* Адаптив для маленьких экранов */
+@media (max-width: 768px) {
+    .podium {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* Меняем порядок: сначала золото (1), потом серебро (2), потом бронза (3) */
+    .podium-item.gold {
+        order: 1;
+    }
+    .podium-item.silver {
+        order: 2;
+    }
+    .podium-item.bronze {
+        order: 3;
+    }
+
+    .podium-item {
+        width: 90%;
+        max-width: 280px;
+        height: auto !important;
+        padding: 15px;
+    }
+    .top-list-item {
+        padding: 12px 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .list-role {
+        margin-right: 0;
+        width: 100%;
+        text-align: left;
+        order: 3;
+    }
+    .list-likes {
+        margin-left: auto;
+    }
+}
+
+/* ===== УЛУЧШЕНИЯ СТРАНИЦЫ ТОПА ===== */
+/* Анимация пульсации для золотого победителя */
+@keyframes goldGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+        border-color: rgba(255, 215, 0, 0.3);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 215, 0, 0);
+        border-color: rgba(255, 215, 0, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+        border-color: rgba(255, 215, 0, 0.3);
+    }
+}
+
+.podium-item.gold {
+    animation: goldGlow 2s infinite;
+    position: relative;
+    z-index: 2;
+}
+
+/* Анимация для короны */
+@keyframes crownFloat {
+    0% {
+        transform: translateY(-5px) rotate(-5deg);
+    }
+    100% {
+        transform: translateY(5px) rotate(5deg);
+    }
+}
+
+.crown {
+    animation: crownFloat 1.5s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 4px gold);
+}
+
+/* Пульсация бейджей */
+.rank-badge {
+    animation: pulseBadge 1.5s infinite;
+}
+
+@keyframes pulseBadge {
+    0% {
+        transform: scale(1);
+        background: #8a2be2;
+    }
+    50% {
+        transform: scale(1.1);
+        background: #a04ef2;
+    }
+    100% {
+        transform: scale(1);
+        background: #8a2be2;
+    }
+}
+
+/* Ховер-эффекты для пьедестала */
+.podium-item {
+    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
+}
+.podium-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Эффект для списка пользователей */
+.top-list-item {
+    position: relative;
+    transition: transform 0.2s, background 0.2s, padding-left 0.2s;
+    overflow: hidden;
+}
+.top-list-item:hover {
+    transform: translateX(8px);
+    background: var(--list-item-hover);
+    padding-left: 20px;
+}
+.top-list-item::after {
+    content: '👤';
+    position: absolute;
+    right: 20px;
+    opacity: 0;
+    transition: 0.3s;
+}
+.top-list-item:hover::after {
+    opacity: 0.6;
+    transform: translateX(-10px);
+}
+
+/* Анимация появления для элементов */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.podium-item, .top-list-item {
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+.podium-item:nth-child(1) { animation-delay: 0.1s; }
+.podium-item:nth-child(2) { animation-delay: 0s; }
+.podium-item:nth-child(3) { animation-delay: 0.2s; }
+.top-list-item:nth-child(1) { animation-delay: 0.3s; }
+.top-list-item:nth-child(2) { animation-delay: 0.4s; }
