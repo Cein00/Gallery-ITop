@@ -1,17 +1,27 @@
 :root {
-    /* Светлая тема */
-    --bg-app: #ffffff;
-    --bg-main: #d9d9d9;
-    --bg-card: #b0b0b0;
-    --bg-image: #ffffff;
-    --bg-search: #b0b0b0;
-    --text-main: #000000;
-    --color-glow: rgba(138, 43, 226, 0.25);
+    /* --- НОВАЯ УЛУЧШЕННАЯ СВЕТЛАЯ ТЕМА --- */
+    --bg-app: linear-gradient(135deg, #eef2f7 0%, #e0e8f0 100%);
+    --bg-main: rgba(255, 255, 255, 0.8);
+    --bg-card: #ffffff;
+    --bg-search: #f8f9fc;
+    --bg-image: #e9ecef;
+    --text-main: #2c3e50;
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    --icon-filter: invert(0) brightness(0.2);
+    --icon-bg-hover: rgba(138, 43, 226, 0.1);
+    --color-glow: rgba(138, 43, 226, 0.2);
+    --glass-bg: rgba(255, 255, 255, 0.6);
+}
 
-    /* Для стеклянной панели */
-    --glass-bg: rgba(255, 255, 255, 0.5);
-    /* Иконки в светлой теме – тёмные */
-    --icon-filter: none;
+:root,
+[data-theme="light"] {
+    --profile-cover-gradient: linear-gradient(135deg, #8a2be2, #b75eff);
+    --profile-avatar-bg: #ffffff;
+    --profile-name-color: #1e272e;
+    --profile-role-color: #8a2be2;
+    --profile-card-bg: #ffffff;
+    --profile-card-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 /* Темная тема (активируется через JS) */
@@ -22,10 +32,11 @@
     --bg-image: #505050;
     --bg-search: #3d3d3d;
     --text-main: #ffffff;
-    --color-glow: rgba(63, 35, 87, 0.55);
-
-    --glass-bg: rgba(0, 0, 0, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
     --icon-filter: brightness(0) invert(1);
+    --color-glow: rgba(63, 35, 87, 0.55);
+    --glass-bg: rgba(0, 0, 0, 0.3);
 }
 
 /* Системная тема */
@@ -37,11 +48,34 @@
         --bg-image: #505050;
         --bg-search: #3d3d3d;
         --text-main: #ffffff;
-        --color-glow: rgba(63, 35, 87, 0.55);
-
-        --glass-bg: rgba(0, 0, 0, 0.3);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
         --icon-filter: brightness(0) invert(1);
+        --color-glow: rgba(63, 35, 87, 0.55);
+        --glass-bg: rgba(0, 0, 0, 0.3);
     }
+}
+
+/* Исправление для иконок */
+.icon img,
+.search-icon-inner img,
+.input-icon,
+.eye-icon,
+.arrow-icon {
+    filter: var(--icon-filter);
+    transition: filter 0.3s ease;
+}
+
+.card-modern .user-name,
+.search-header h1 {
+    color: var(--text-main) !important;
+}
+
+.main-content.glass-panel {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
 }
 
 /* Стиль для активной кнопки в настройках */
@@ -58,6 +92,35 @@
     color: white !important;
 }
 
+.danger-text,
+.button-link {
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: var(--text-main) !important;
+    opacity: 0.6;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    padding: 10px 0;
+    display: inline-block;
+}
+
+.danger-text:hover,
+.button-link:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.danger-zone {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
 /* Базовые стили */
 body {
     margin: 0;
@@ -65,8 +128,14 @@ body {
     background-color: var(--bg-app);
     color: var(--text-main);
     min-height: 100vh;
+    background-attachment: fixed;
+    transition: all 0.1s ease;
 }
-/* ************************************/
+
+h1, h2, h3, p {
+    color: var(--text-main);
+}
+
 /* Специальный класс для body на странице логина (чтобы центрировать) */
 .login-body {
     display: flex !important;
@@ -75,6 +144,41 @@ body {
     height: 100vh !important;
     padding: 20px;
     box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    background-color: #121212;
+}
+
+.login-body .login-card h2,
+.login-body .login-card p,
+.login-body .login-card a,
+.login-body .login-header h2,
+.login-body .login-header p,
+.login-body .input-modern input,
+.login-body .select-trigger span,
+.login-body .option,
+.login-body #regRoleLabel {
+    color: #ffffff !important;
+}
+
+.login-body .select-options {
+    background: rgba(40, 40, 40, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.login-body .option:hover {
+    background: rgba(138, 43, 226, 0.3) !important;
+    color: #ffffff !important;
+}
+
+.login-body .custom-select .input-icon,
+.login-body .custom-select .arrow-icon {
+    filter: brightness(0) invert(1) !important;
+}
+
+.login-body .input-modern input::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
 }
 
 .login-wrapper {
@@ -83,13 +187,30 @@ body {
     justify-content: center;
 }
 
-/* Сама карточка (овал) */
+.login-card h2,
+.login-card p,
+.login-card a,
+.login-header h2,
+.login-header p {
+    color: var(--text-main) !important;
+}
+
+.input-modern input {
+    color: var(--text-main) !important;
+    background: transparent;
+}
+
+.input-modern input::placeholder {
+    color: var(--text-main);
+    opacity: 0.6;
+}
+
 .login-card {
     background-color: var(--bg-main);
     padding: 50px 40px;
     border-radius: 40px;
     width: 100%;
-    max-width: 500px; /* Умеренная ширина */
+    max-width: 500px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     display: flex;
@@ -97,29 +218,26 @@ body {
     align-items: center;
     position: relative;
 }
+
 .login-card::before {
     content: "";
     position: absolute;
-    /* Сдвигаем под карточку */
     top: -20px;
     left: -20px;
     right: -20px;
     bottom: -20px;
-    
-    /* Используем твой фиолетовый */
     background: #6c19b981;
-    filter: blur(50px); /* Сильное размытие */
-    border-radius:30px; /* Чуть больше, чем у карточки */
-    
-    z-index: -1; /* Помещаем НАД фоном, но ПОД формой */
-    opacity: 0.6; /* Делаем мягким */
+    filter: blur(50px);
+    border-radius: 30px;
+    z-index: -1;
+    opacity: 0.6;
     transition: opacity 0.5s ease;
 }
+
 .login-card:hover::before {
     opacity: 0.8;
 }
 
-/* Шапка с названием */
 .login-header {
     background-color: var(--bg-search);
     padding: 15px 30px;
@@ -134,7 +252,6 @@ body {
     font-weight: 900;
 }
 
-/* Группа полей */
 .input-group {
     width: 100%;
     display: flex;
@@ -143,7 +260,6 @@ body {
     margin-bottom: 40px;
 }
 
-/* Овал поля ввода */
 .input-oval {
     background-color: var(--bg-search);
     border-radius: 30px;
@@ -161,31 +277,28 @@ body {
     font-size: 0.9rem;
 }
 
-/* Контейнер кнопок */
 .action-buttons {
     width: 100%;
     display: flex;
-    flex-direction: column; /* Ставим кнопки друг под другом для центровки */
-    align-items: center;    /* Центрируем их по горизонтали */
-    gap: 15px;              /* Расстояние между кнопками */
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
-/* Общий стиль для кнопок-овалов */
 .button-oval {
     background-color: var(--bg-search);
-    padding: 15px 0;        /* Обнуляем боковые паддинги, используем width */
-    border-radius: 30px;   
+    padding: 15px 0;
+    border-radius: 30px;
     text-decoration: none;
     color: var(--text-main);
     font-size: 0.9rem;
     font-weight: 900;
     transition: 0.3s;
-    
-    /* Одинаковая ширина для обеих кнопок */
-    width: 200px;           
-    text-align: center;     /* Текст строго по центру кнопки */
+    width: 200px;
+    text-align: center;
     display: block;
 }
+
 .secondary-button {
     background-color: var(--bg-search);
 }
@@ -193,12 +306,11 @@ body {
 .button-oval:hover {
     transform: scale(1.05);
     filter: brightness(1.1);
-    background-color: #4a4a4a; /* Слегка подсвечиваем */
+    background-color: #4a4a4a;
 }
 
-/* Фиолетовый акцент для основной кнопки ВОЙТИ */
 .submit-button {
-    background-color: #8a2be2; /* Тот самый фиолетовый */
+    background-color: #8a2be2;
     color: #ffffff !important;
 }
 
@@ -206,55 +318,74 @@ body {
     box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
     background-color: #9932cc;
 }
-/* ************************************/
+
 .app-container {
     display: flex;
     gap: 40px;
     padding: 40px;
     max-width: 1400px;
     margin: 0 auto;
-    min-height: calc(100vh - 80px); /* Чтобы контейнер занимал почти весь экран */
+    min-height: calc(100vh - 80px);
 }
 
-/* Навигация */
 .sidebar {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
     padding-top: 20px;
-    min-width: 60px;
-    /* Чтобы иконки не уезжали вверх при скролле на десктопе */
+    min-width: 80px;
     position: sticky;
-    top: 40px; 
+    top: 40px;
     height: fit-content;
+    z-index: 10;
 }
 
 .icon {
-    width: 50px;           /* Размер круга */
-    height: 50px;
-    background-color: var(--bg-card); /* Цвет круга подстраивается под тему */
-    border-radius: 50%;    /* Делаем идеально круглым */
+    width: 60px;
+    height: 60px;
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    color: var(--text-main);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
 }
+
 .icon img {
-    width: 60%;          /* Картинка будет занимать 60% от круга */
-    height: 60%;         /* Чтобы сохранялись пропорции */
-    object-fit: contain; /* Картинка не будет растягиваться или сжиматься некрасиво */
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
     filter: var(--icon-filter);
+    opacity: 0.7;
+    transition: 0.3s;
 }
 
 .icon:hover {
     transform: scale(1.1);
-    filter: brightness(1.2); /* Слегка подсвечиваем при наведении */
+    background: rgba(138, 43, 226, 0.2);
+    border-color: #8a2be2;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
 }
 
-/* Основной контент (серый блок) */
+.icon:hover img {
+    opacity: 1;
+    transform: rotate(5deg);
+}
+
+.icon.active {
+    background: #8a2be2;
+    border-color: #8a2be2;
+    box-shadow: 0 0 25px rgba(138, 43, 226, 0.6);
+}
+
+.icon.active img {
+    opacity: 1;
+}
+
 .main-content {
     flex-grow: 1;
     background-color: var(--bg-main);
@@ -262,33 +393,26 @@ body {
     padding: 40px;
     display: flex;
     flex-direction: column;
-    height: fit-content; /* Серый блок облегает картинки и не тянется лишним вниз */
+    height: fit-content;
     position: relative;
-    /* Убедимся, что фон блока непрозрачный, чтобы перекрыть свечение внутри */
-    background-color: var(--bg-main); 
-    /* Немного скруглим углы сильнее, если нужно, для мягкости */
+    background-color: var(--bg-main);
     border-radius: 40px;
 }
+
 .main-content::before {
-    content: ""; /* Обязательно для псевдоэлемента */
+    content: "";
     position: absolute;
-    /* Размещаем подложку ЗА основным блоком */
-    top: -15px;  /* Выходит за границы сверху */
-    left: -15px; /* Выходит за границы слева */
-    right: -15px; /* Выходит за границы справа */
-    bottom: -15px; /* Выходит за границы снизу */
-    
-    /* Основной эффект свечения: сильное размытие и фиолетовый цвет */
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
     background: var(--color-glow);
-    filter: blur(40px); /* Сильное размытие создает мягкий хаотичный ореол */
-    border-radius: 50px; /* Скругление чуть больше, чем у самого блока */
-    
-    /* Помещаем псевдоэлемент НАД фоном страницы, но ПОД контентом блока */
-    z-index: -1; 
-    
-    /* Анимация пульсации (опционально, для большей "хаотичности") */
+    filter: blur(40px);
+    border-radius: 50px;
+    z-index: -1;
     animation: glow-pulse 4s infinite alternate;
 }
+
 @keyframes glow-pulse {
     0% {
         filter: blur(35px);
@@ -297,7 +421,7 @@ body {
     100% {
         filter: blur(50px);
         opacity: 1;
-        transform: scale(1.02); /* Слегка увеличивается */
+        transform: scale(1.02);
     }
 }
 
@@ -310,16 +434,13 @@ header h1 {
 .search-bar {
     background-color: var(--bg-search);
     border-radius: 30px;
-    padding: 10px 20px; /* Немного увеличим внутренние отступы для высоты */
-    
-    /* ИЗМЕНЕНИЯ ТУТ: */
-    width: 90%;          /* Теперь занимает почти всю ширину контента */
-    max-width: 800px;    /* Но не становится слишком огромным на сверхшироких экранах */
-    
+    padding: 10px 20px;
+    width: 90%;
+    max-width: 800px;
     margin: 0 auto 40px auto;
     display: flex;
     align-items: center;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid var(--glass-border);
 }
 
 .search-bar input {
@@ -327,31 +448,35 @@ header h1 {
     border: none;
     outline: none;
     width: 100%;
-    color: inherit;
+    color: var(--text-main);
     font-size: 0.9rem;
 }
+
+.search-bar-modern input::placeholder {
+    color: var(--text-main);
+    opacity: 0.5;
+}
+
 .search-icon {
     width: 35px;
     height: 35px;
-    background-color: #4a4a4a; /* Темный кружок для лупы */
+    background-color: #4a4a4a;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 10px;
-    flex-shrink: 0;           /* Чтобы кружок не сплющивался */
+    flex-shrink: 0;
 }
+
 .search-icon img {
     width: 50%;
     height: 50%;
     object-fit: contain;
 }
 
-
-/* Сетка (самое важное) */
 .gallery-grid {
     display: grid;
-    /* Картинки сами решают, сколько их влезет в ряд, минимум 250px */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 30px;
     width: 100%;
@@ -381,42 +506,47 @@ header h1 {
     margin-top: 10px;
 }
 
-/* Адаптив для мобилок */
+.user-name,
+.podium-name,
+.podium-likes,
+.profile-header-visual h1,
+.settings-section h3 {
+    color: var(--text-main) !important;
+}
+
+.card-modern .user-name {
+    color: var(--text-main);
+}
+
 @media (max-width: 768px) {
-    /* 1. Главный контейнер меняет направление на колонку */
     .app-container {
-        flex-direction: column; 
-        align-items: center;    /* Центрируем меню и контент */
+        flex-direction: column;
+        align-items: center;
         padding: 10px;
         gap: 20px;
     }
 
-    /* 2. Меню выстраивается в ряд и занимает всю ширину */
     .sidebar {
-        flex-direction: row;    /* Иконки в ряд */
+        flex-direction: row;
         justify-content: center;
         width: 100%;
         min-width: auto;
         padding: 10px 0;
-        position: static;       /* Или sticky, если хочешь, чтобы меню не уезжало */
+        position: static;
     }
 
-    /* 3. Защита иконок от сплющивания */
     .icon {
-        flex-shrink: 0;         /* ЗАПРЕЩАЕТ сжимать круг */
-        width: 50px;            /* Фиксируем размер */
+        flex-shrink: 0;
+        width: 50px;
         height: 50px;
     }
 
-    /* 4. Растягиваем основной блок на всю ширину */
     .main-content {
         width: 100%;
-        box-sizing: border-box; /* Чтобы padding не раздувал блок */
+        box-sizing: border-box;
     }
 }
 
-/* ************************************** */
-/* Шапка профиля */
 .profile-container {
     display: flex;
     justify-content: center;
@@ -427,7 +557,7 @@ header h1 {
 .profile-avatar {
     width: 110px;
     height: 110px;
-    background-color: #ffffff;
+    background-color: var(--bg-card);
     border-radius: 50%;
     margin-bottom: 20px;
     display: flex;
@@ -441,24 +571,22 @@ header h1 {
     height: 85%;
     object-fit: contain;
 }
+
 .user-meta {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-/* Карточка с инфо — используем цвета поиска */
+
 .profile-info-card {
     background-color: var(--bg-search);
     padding: 20px;
     border-radius: 40px;
-    
-    /* Делаем пошире, но не на весь экран */
     width: 100%;
-    max-width: 600px; 
-    
+    max-width: 600px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Центрирует всё содержимое */
+    align-items: center;
     text-align: center;
 }
 
@@ -472,17 +600,15 @@ header h1 {
     opacity: 0.7;
 }
 
-/* Контейнер для соцсетей */
 .social-links {
     display: flex;
     gap: 20px;
 }
 
-/* Сами кнопки-кружочки (состояние ПО УМОЛЧАНИЮ) */
 .social-icon {
     width: 50px;
     height: 50px;
-    background-color: #414141; /* Цвет подложки */
+    background-color: #414141;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -490,16 +616,14 @@ header h1 {
     transition: 0.3s;
 }
 
-/* Иконки внутри кружков */
 .social-icon img {
     width: 25px;
     filter: var(--icon-filter);
 }
 
-/* Состояние ПРИ НАВЕДЕНИИ (hover) */
 .social-icon:hover {
     background-color: #8a2be2;
-    transform: translateY(-3px); /* Легкий эффект прыжка при наведении */
+    transform: translateY(-3px);
 }
 
 .section-title {
@@ -508,13 +632,14 @@ header h1 {
     font-weight: normal;
 }
 
-/* Адаптив для профиля */
+
+
 @media (max-width: 768px) {
     .profile-header {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .profile-info-card {
         flex-direction: column;
         gap: 20px;
@@ -523,55 +648,46 @@ header h1 {
     }
 }
 
-/* Большой овал-контейнер для всех работ */
-
-/* Сетка внутри овала */
 .gallery-grid {
     display: grid;
-    /* Центрируем сами колонки внутри овала */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
     width: 100%;
     justify-content: center;
-    align-items: center; /* Выравнивание по вертикали в ряду */
+    align-items: center;
 }
 
-/* Сами карточки работ (тоже со скруглениями) */
 .card {
-    background-color: #3d3d3d;
+    background-color: var(--bg-card);
     border-radius: 35px;
     aspect-ratio: 1 / 1;
     position: relative;
-    
-    /* Центрируем содержимое (image-placeholder) строго посередине */
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    padding: 15px;       /* Одинаковый зазор от обводки до картинки */
+    padding: 15px;
     box-sizing: border-box;
     transition: all 0.3s ease;
-    border: 2px solid transparent; /* Та самая обводка */
+    border: 2px solid transparent;
 }
 
 .card:hover {
     transform: scale(1.02);
-    border-color: #8a2be2; /* Фиолетовая обводка */
+    border-color: #8a2be2;
 }
 
-/* Заполнитель для картинки */
 .image-placeholder {
     width: 100%;
     height: 100%;
-    background-color: #555;
-    border-radius: 25px; /* Чуть меньше, чем у карточки */
+    background-color: var(--bg-image);
+    border-radius: 25px;
     display: block;
 }
 
 .works-oval-container {
     background-color: var(--bg-search);
     border-radius: 60px;
-    padding: 40px;       /* Равномерный отступ со всех сторон */
+    padding: 40px;
     width: 90%;
     max-width: 1000px;
     margin: 0 auto;
@@ -580,24 +696,6 @@ header h1 {
     justify-content: center;
 }
 
-/* ========================================= */
-/* НОВЫЙ ДИЗАЙН ДЛЯ ЛОГИНА/РЕГИСТРАЦИИ        */
-/* ========================================= */
-
-/* Специфический body для центрирования (оставляем твой) */
-.login-body {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    height: 100vh !important;
-    padding: 20px;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden; /* Чтобы свечение не создавало скролл */
-    background-color: #121212; /* Оставляем темный фон для логина */
-}
-
-/* Мягкое неоновое свечение позади формы */
 .login-glow {
     position: absolute;
     width: 600px;
@@ -606,17 +704,16 @@ header h1 {
     filter: blur(80px);
     border-radius: 50%;
     z-index: 0;
-    pointer-events: none; /* Чтобы не мешало кликать */
+    pointer-events: none;
 }
 
-/* Карточка ("Стекло") */
 .login-card {
-    background: rgba(255, 255, 255, 0.03); /* Ультра-прозрачный белый */
-    backdrop-filter: blur(20px); /* Матовое стекло */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Очень тонкая граница */
+    border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 60px 50px;
-    border-radius: 30px; /* Чуть меньше скругление, более строго */
+    border-radius: 30px;
     width: 100%;
     max-width: 550px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
@@ -625,20 +722,19 @@ header h1 {
     flex-direction: column;
     align-items: center;
     position: relative;
-    z-index: 1; /* Поверх свечения */
+    z-index: 1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .login-card:hover {
-    transform: translateY(-5px); /* Легкий прыжок */
+    transform: translateY(-5px);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
-/* Шапка */
 .login-header {
     text-align: center;
     margin-bottom: 50px;
-    background: none; /* Убираем серый овал */
+    background: none;
     padding: 0;
 }
 
@@ -658,50 +754,44 @@ header h1 {
     opacity: 0.6;
 }
 
-/* Группа полей */
 .input-group {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 25px; /* Больше расстояние */
+    gap: 25px;
     margin-bottom: 50px;
 }
 
-/* СОВРЕМЕННОЕ ПОЛЕ ВВОДА */
 .input-modern {
     position: relative;
     width: 100%;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Тонкая полоса снизу */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     padding: 15px 0;
     transition: 0.3s;
     box-sizing: border-box;
 }
 
-/* Эффект при клике на поле */
 .input-modern:focus-within {
-    border-color: #8a2be2; /* Фиолетовая полоса */
-    /* Тонкое неоновое свечение полосы */
+    border-color: #8a2be2;
     box-shadow: 0 1px 0 #8a2be2, 0 5px 10px rgba(138, 43, 226, 0.2);
 }
 
-/* Иконки внутри полей */
 .input-icon {
     width: 20px;
     height: 20px;
     margin-right: 15px;
-    opacity: 0.4; /* Полупрозрачные */
+    opacity: 0.4;
     transition: 0.3s;
-    filter: brightness(0) invert(1); /* Делаем иконки белыми */
+    filter: brightness(0) invert(1);
 }
 
 .input-modern:focus-within .input-icon {
-    opacity: 1; /* Яркие при фокусе */
-    filter: none; /* Убираем инверсию, если иконка цветная, или оставляем */
+    opacity: 1;
+    filter: none;
 }
 
-/* Сам input */
 .input-modern input {
     background: none;
     border: none;
@@ -710,7 +800,7 @@ header h1 {
     color: var(--text-main);
     font-size: 1rem;
     font-family: inherit;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 .input-modern input::placeholder {
@@ -718,9 +808,8 @@ header h1 {
     opacity: 0.4;
 }
 
-/* Специфика для полей с паролем (для глазика) */
 .password-field {
-    padding-right: 40px; /* Место для глаза */
+    padding-right: 40px;
 }
 
 .eye-icon {
@@ -739,18 +828,13 @@ header h1 {
     opacity: 1;
 }
 
-/* ========================================= */
-/* КАСТОМНЫЙ SELECT (JS) - СТИЛИ             */
-/* ========================================= */
-
 .custom-select {
     position: relative;
     cursor: pointer;
 }
 
-/* Триггер (то, что видит пользователь) */
 .select-trigger {
-    justify-content: space-between; /* Текст слева, стрелка справа */
+    justify-content: space-between;
 }
 
 .select-trigger span {
@@ -759,7 +843,6 @@ header h1 {
     opacity: 0.4;
 }
 
-/* Если значение выбрано (добавим класс через JS) */
 .select-trigger.selected span {
     opacity: 1;
 }
@@ -771,19 +854,17 @@ header h1 {
     opacity: 0.4;
 }
 
-/* Когда список открыт (класс через JS) */
 .custom-select.open .arrow-icon {
     transform: rotate(180deg);
     opacity: 1;
 }
 
-/* Выпадающий список с опциями */
 .select-options {
     position: absolute;
     top: calc(100% + 10px);
     left: 0;
     width: 100%;
-    background: rgba(30, 30, 30, 0.9); /* Темный, плотный фон */
+    background: rgba(30, 30, 30, 0.9);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -793,7 +874,7 @@ header h1 {
     transform: translateY(-10px);
     transition: 0.3s ease;
     z-index: 100;
-    overflow: hidden; /* Чтобы скругления работали */
+    overflow: hidden;
 }
 
 .custom-select.open .select-options {
@@ -802,7 +883,6 @@ header h1 {
     transform: translateY(0);
 }
 
-/* Сами пункты списка */
 .select-options .option {
     padding: 15px 20px;
     color: var(--text-main);
@@ -811,25 +891,19 @@ header h1 {
 }
 
 .select-options .option:hover {
-    background-color: rgba(138, 43, 226, 0.1); /* Легкий фиолетовый фон */
+    background-color: rgba(138, 43, 226, 0.1);
     color: #ffffff;
 }
 
-/* Выбранный пункт (добавим класс через JS) */
 .select-options .option.selected {
     background-color: #8a2be2;
     color: #ffffff;
 }
 
-/* ========================================= */
-/* КНОПКИ                                    */
-/* ========================================= */
-
 .action-buttons {
     width: 100%;
 }
 
-/* Горизонтальное расположение кнопок */
 .horizontal-buttons {
     display: flex;
     justify-content: space-between;
@@ -837,11 +911,10 @@ header h1 {
     gap: 20px;
 }
 
-/* СОВРЕМЕННАЯ КНОПКА ВОЙТИ */
 .button-modern {
-    background: linear-gradient(135deg, #8a2be2 0%, #9932cc 100%); /* Градиент */
+    background: linear-gradient(135deg, #8a2be2 0%, #9932cc 100%);
     padding: 18px 30px;
-    border-radius: 15px; /* Прямоугольная со скруглением */
+    border-radius: 15px;
     text-decoration: none;
     color: #ffffff !important;
     font-size: 1rem;
@@ -851,16 +924,15 @@ header h1 {
     transition: 0.3s ease;
     border: none;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3); /* Тень в цвет */
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
     text-align: center;
 }
 
 .button-modern:hover {
-    transform: translateY(-2px); /* Прыжок */
-    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.5); /* Ярче тень */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.5);
 }
 
-/* Ссылка (Назад/Войти) */
 .button-link {
     text-decoration: none;
     color: var(--text-main);
@@ -875,85 +947,53 @@ header h1 {
     color: #8a2be2;
 }
 
-/* ========================================= */
-/* 1. Стилизация выпадающего списка (Select) */
-/* ========================================= */
-
-/* Стили для самого поля выбора (овала) */
 .input-oval select {
     background: none;
     border: none;
     outline: none;
     width: 100%;
-    color: inherit; /* Наследует белый цвет текста из темы */
+    color: inherit;
     font-size: 0.9rem;
     font-family: inherit;
     cursor: pointer;
-    /* Убираем дефолтную стрелочку, чтобы она не мешала */
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 }
 
-/* Стили для выпадающего списка (самое важное!) */
-/* К сожалению, браузеры плохо поддаются стилизации 'option', 
-   но мы зададим им темный фон */
 .input-oval select option {
-    background-color: var(--bg-app); /* Темный фон приложения */
-    color: var(--text-main);          /* Белый текст */
+    background-color: var(--bg-app);
+    color: var(--text-main);
     padding: 10px;
 }
-
-/* ========================================= */
-/* 2. Стили для неонового Toast-уведомления   */
-/* ========================================= */
 
 .toast {
     position: fixed;
     top: 20px;
     right: 20px;
-    
-    /* Цвет: чуть светлее фона, как ты и хотела (берем --bg-card) */
     background-color: var(--bg-card);
     color: var(--text-main);
-    
     padding: 20px 30px;
     border-radius: 20px;
     z-index: 1000;
     font-weight: bold;
     font-size: 0.9rem;
-    
-    /* Тонкая фиолетовая рамочка */
     border: 2px solid #8a2be2;
-    
-    /* НЕОНОВОЕ ОБРАМЛЕНИЕ (Свечение) */
-    /* Используем box-shadow с размытием в цвет рамки */
-    box-shadow: 
-        0 0 10px rgba(138, 43, 226, 0.6), /* Внутреннее мягкое */
-        0 0 20px rgba(138, 43, 226, 0.4), /* Среднее */
-        0 0 30px rgba(138, 43, 226, 0.2); /* Внешнее хаотичное */
-
-    /* Включаем анимацию (см. ниже) */
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.6), 0 0 20px rgba(138, 43, 226, 0.4), 0 0 30px rgba(138, 43, 226, 0.2);
     animation: toastSlideIn 0.5s ease forwards;
 }
 
-/* ========================================= */
-/* 3. Анимации                              */
-/* ========================================= */
-
-/* Анимация плавного появления и выезда справа */
 @keyframes toastSlideIn {
     0% {
         opacity: 0;
-        transform: translateX(100%); /* Начинаем за экраном */
+        transform: translateX(100%);
     }
     100% {
         opacity: 1;
-        transform: translateX(0);    /* Встаем на место */
+        transform: translateX(0);
     }
 }
 
-/* Анимация плавного исчезновения */
 @keyframes toastFadeOut {
     0% {
         opacity: 1;
@@ -961,11 +1001,10 @@ header h1 {
     }
     100% {
         opacity: 0;
-        transform: translateX(50%); /* Чуть уезжаем */
+        transform: translateX(50%);
     }
 }
 
-/* Дополнительный стиль для расположения кнопок именно на входе */
 .vertical-buttons {
     display: flex;
     flex-direction: column;
@@ -974,24 +1013,22 @@ header h1 {
     width: 100%;
 }
 
-/* Убедимся, что кнопка на входе занимает достаточную ширину */
 .vertical-buttons .button-modern {
     width: 100%;
     max-width: 280px;
 }
 
-/* Чтобы свечение на фоне работало правильно, убедись что у login-body есть z-index */
 .login-body {
     position: relative;
     z-index: 1;
-    background-color: #121212; /* Твой темный фон из новой секции */
+    background-color: #121212;
 }
 
 .guest-button {
-    background: rgba(255, 255, 255, 0.05) !important; /* Почти прозрачная */
-    border: 1px solid rgba(138, 43, 226, 0.4) !important; /* Фиолетовая кайма */
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(138, 43, 226, 0.4) !important;
     box-shadow: none !important;
-    margin-top: -10px; /* Немного прижмем к основной кнопке */
+    margin-top: -10px;
 }
 
 .guest-button:hover {
@@ -999,36 +1036,34 @@ header h1 {
     box-shadow: 0 0 15px rgba(138, 43, 226, 0.2) !important;
 }
 
-/* Настройка фона для всей страницы поиска */
 .search-page-body {
-    background-color: var(--bg-app); /* теперь подстраивается под тему */
+    background-color: var(--bg-app);
     overflow-x: hidden;
     position: relative;
 }
 
-/* Стеклянная панель основного контента */
 .main-content.glass-panel {
     background: var(--glass-bg) !important;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
     border-radius: 40px;
     padding: 40px;
     animation: fadeIn 0.8s ease-out;
 }
 
-/* Обновленная строка поиска */
 .search-bar-modern {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-search);
     border-radius: 20px;
     padding: 12px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
     transition: 0.3s;
     max-width: 700px;
     margin: 0 auto 50px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .search-bar-modern:focus-within {
@@ -1040,18 +1075,22 @@ header h1 {
     background: none;
     border: none;
     outline: none;
-    color: #fff;
+    color: var(--text-main);
     width: 100%;
     margin-left: 15px;
     font-size: 1rem;
 }
 
-/* Современные карточки работ */
+.search-bar-modern input::placeholder {
+    color: var(--text-main);
+    opacity: 0.5;
+}
+
 .card-modern {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-card);
     border-radius: 25px;
     padding: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
     transition: transform 0.3s ease, border-color 0.3s ease;
     text-align: center;
 }
@@ -1072,16 +1111,20 @@ header h1 {
     font-weight: 600;
     letter-spacing: 0.5px;
     opacity: 0.8;
-    color: #fff;
+    color: var(--text-main);
 }
 
-/* Анимация появления */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Боковая панель (сайдбар) */
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -1094,26 +1137,21 @@ header h1 {
     z-index: 10;
 }
 
-/* Те самые кружочки */
 .icon {
     width: 60px;
     height: 60px;
-    /* Делаем круг стеклянным, как основную панель */
-    background: rgba(255, 255, 255, 0.05); 
+    background: var(--bg-card);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    
-    border-radius: 50%; /* Идеальный круг */
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Плавный отскок */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
 }
 
-/* Иконки внутри кружков */
 .icon img {
     width: 50%;
     height: 50%;
@@ -1123,21 +1161,18 @@ header h1 {
     transition: 0.3s;
 }
 
-/* Эффект при наведении на кружок */
 .icon:hover {
     transform: scale(1.1);
-    background: rgba(138, 43, 226, 0.2); /* Фиолетовый оттенок */
+    background: rgba(138, 43, 226, 0.2);
     border-color: #8a2be2;
-    /* Неоновое свечение вокруг кружка */
     box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
 }
 
 .icon:hover img {
     opacity: 1;
-    transform: rotate(5deg); /* Легкий игривый поворот */
+    transform: rotate(5deg);
 }
 
-/* Активное состояние (если нужно выделить, где мы сейчас) */
 .icon.active {
     background: #8a2be2;
     border-color: #8a2be2;
@@ -1148,7 +1183,6 @@ header h1 {
     opacity: 1;
 }
 
-/* Карточка профиля в новом стиле */
 .profile-info-card-modern {
     display: flex;
     flex-direction: column;
@@ -1159,7 +1193,7 @@ header h1 {
 .profile-avatar-wrapper {
     width: 120px;
     height: 120px;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-card);
     border: 2px solid #8a2be2;
     border-radius: 50%;
     display: flex;
@@ -1177,14 +1211,12 @@ header h1 {
     display: block;
 }
 
-/* Кнопка изменить */
 .edit-btn {
     margin-top: 25px;
     font-size: 0.8rem !important;
     padding: 12px 25px !important;
 }
 
-/* Маленькие кружочки соцсетей */
 .social-links-modern {
     display: flex;
     gap: 15px;
@@ -1193,12 +1225,12 @@ header h1 {
 .icon-small {
     width: 45px;
     height: 45px;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-card);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
     transition: 0.3s;
 }
 
@@ -1211,13 +1243,12 @@ header h1 {
     background: #8a2be2;
     box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
 }
-/* Контейнер шапки */
+
 .profile-header-visual {
     position: relative;
-    margin-bottom: 60px; /* Отступ для аватара, который вылезает за край */
+    margin-bottom: 60px;
 }
 
-/* Обложка (тот самый бампер) */
 .profile-cover {
     height: 180px;
     width: 100%;
@@ -1233,16 +1264,15 @@ header h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('../img/pattern.png'); /* Если есть паттерн, будет круто */
+    background: url('../img/pattern.png');
     opacity: 0.2;
 }
 
-/* Блок с данными под обложкой */
 .profile-main-info {
     display: flex;
     align-items: flex-end;
     padding: 0 40px;
-    margin-top: -60px; /* Выносим аватар наверх на обложку */
+    margin-top: -60px;
     gap: 25px;
 }
 
@@ -1253,15 +1283,14 @@ header h1 {
 .profile-avatar-wrapper {
     width: 130px;
     height: 130px;
-    background: #2d2d2d;
-    border: 5px solid rgba(138, 43, 226, 0.5); /* Фиолетовый ободок */
+    background: var(--bg-card);
+    border: 5px solid rgba(138, 43, 226, 0.5);
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
 }
 
-/* Кнопка изменить в виде маленького кружочка */
 .edit-badge {
     position: absolute;
     bottom: 5px;
@@ -1275,7 +1304,7 @@ header h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: 0.3s;
 }
 
@@ -1289,7 +1318,6 @@ header h1 {
     filter: brightness(0) invert(1);
 }
 
-/* Текст профиля */
 .profile-text-data {
     padding-bottom: 10px;
 }
@@ -1298,10 +1326,9 @@ header h1 {
     margin: 0;
     font-size: 1.8rem;
     color: #fff;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Мини-статистика справа */
 .profile-stats-mini {
     margin-left: auto;
     display: flex;
@@ -1333,7 +1360,7 @@ header h1 {
 
 .user-role-label {
     font-size: 1rem;
-    color: #8a2be2; /* Фиолетовый акцент на роль */
+    color: #8a2be2;
     margin: 5px 0 0 0;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -1347,12 +1374,11 @@ header h1 {
     opacity: 0.6;
 }
 
-/* Карточки без лишнего текста, только картинка */
 .card-modern {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-card);
     border-radius: 20px;
     padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
     transition: 0.3s;
 }
 
@@ -1360,37 +1386,58 @@ header h1 {
     border-color: #8a2be2;
     transform: translateY(-5px);
 }
+
 #profileEdit {
     padding: 20px 40px;
-    animation: fadeIn 0.4s ease-out; /* Чтобы плавно появлялось */
+    animation: fadeIn 0.4s ease-out;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Оверлей (затемнение и размытие фона всей страницы) */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Затемнение */
-    backdrop-filter: blur(15px); /* ТОО САМОЕ размытие фона */
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    z-index: 1000; /* Поверх всего */
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
     animation: fadeInOverlay 0.3s ease;
 }
 
-/* Стеклянная карточка самого окна */
+
+.modal-glass-card .input-icon {
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+}
+
+.modal-glass-card .login-header h2,
+.modal-glass-card .login-header p,
+.modal-glass-card .input-modern input,
+.modal-glass-card .input-modern input::placeholder,
+.modal-glass-card .input-icon,
+.modal-glass-card .edit-avatar-section label,
+.modal-glass-card .close-modal {
+    color: #ffffff !important;
+}
+
 .modal-glass-card {
     background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(25px); /* Двойное размытие внутри */
+    backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     padding: 60px 50px;
@@ -1398,10 +1445,17 @@ header h1 {
     max-width: 550px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
     position: relative;
-    animation: slideInModal 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Анимация «вылета» */
+    animation: slideInModal 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
 
-/* Кнопка закрытия (крестик) */
+.glass-panel {
+    background: var(--bg-main) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--glass-shadow);
+    border-radius: 20px;
+}
+
 .close-modal {
     position: absolute;
     top: 20px;
@@ -1419,7 +1473,6 @@ header h1 {
     transform: rotate(90deg);
 }
 
-/* Стилизация секции аватара в модельном окне */
 .edit-avatar-section {
     display: flex;
     flex-direction: column;
@@ -1429,11 +1482,11 @@ header h1 {
 }
 
 .modal-avatar {
-    width: 100px !important; /* Чуть меньше в модалке */
+    width: 100px !important;
     height: 100px !important;
-    background: none !important; /* УБИРАЕМ БЕЛЫЙ ФОН */
+    background: none !important;
     border-color: #8a2be2 !important;
-    margin-bottom: 0 !important; /* Убираем отступ снизу */
+    margin-bottom: 0 !important;
 }
 
 .modal-avatar img {
@@ -1449,24 +1502,31 @@ header h1 {
     padding: 10px 20px !important;
 }
 
-/* Настройка кнопок в модалке */
 .modal-actions .button-modern {
     width: 100%;
     margin-top: 30px;
 }
 
-/* Анимации */
 @keyframes fadeInOverlay {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes slideInModal {
-    from { opacity: 0; transform: translateY(-50px) scale(0.9); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
-/* Шапка топа */
 .top-header {
     text-align: center;
     margin-bottom: 40px;
@@ -1483,7 +1543,6 @@ header h1 {
     font-size: 0.9rem;
 }
 
-/* Пьедестал */
 .podium {
     display: flex;
     justify-content: center;
@@ -1494,8 +1553,8 @@ header h1 {
 }
 
 .podium-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
     border-radius: 25px;
     padding: 20px;
     text-align: center;
@@ -1503,7 +1562,6 @@ header h1 {
     transition: 0.3s;
 }
 
-/* Выделяем победителя */
 .podium-item.gold {
     height: 260px;
     background: rgba(255, 215, 0, 0.05);
@@ -1526,7 +1584,9 @@ header h1 {
     border: 3px solid #8a2be2;
 }
 
-.gold .podium-avatar img { border-color: gold; }
+.gold .podium-avatar img {
+    border-color: gold;
+}
 
 .rank-badge {
     position: absolute;
@@ -1543,7 +1603,10 @@ header h1 {
     font-weight: bold;
 }
 
-.gold .rank-badge { background: gold; color: #000; }
+.gold .rank-badge {
+    background: gold;
+    color: #000;
+}
 
 .crown {
     position: absolute;
@@ -1553,10 +1616,16 @@ header h1 {
     font-size: 1.5rem;
 }
 
-.podium-name { font-weight: bold; margin: 10px 0 5px; }
-.podium-likes { color: #8a2be2; font-weight: bold; }
+.podium-name {
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
 
-/* Список остальных */
+.podium-likes {
+    color: #8a2be2;
+    font-weight: bold;
+}
+
 .top-list {
     display: flex;
     flex-direction: column;
@@ -1566,20 +1635,240 @@ header h1 {
 .top-list-item {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--bg-card);
     padding: 15px 30px;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
     transition: 0.2s;
 }
 
 .top-list-item:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(138, 43, 226, 0.05);
     transform: scale(1.01);
 }
 
-.list-rank { width: 40px; font-weight: bold; opacity: 0.5; }
-.list-avatar { width: 40px; height: 40px; border-radius: 50%; margin-right: 20px; }
-.list-name { flex-grow: 1; font-weight: 500; }
-.list-role { opacity: 0.4; font-size: 0.8rem; margin-right: 30px; }
-.list-likes { font-weight: bold; color: #8a2be2; }
+.list-rank {
+    width: 40px;
+    font-weight: bold;
+    opacity: 0.5;
+}
+
+.list-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.list-name {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.list-role {
+    opacity: 0.4;
+    font-size: 0.8rem;
+    margin-right: 30px;
+}
+
+.list-likes {
+    font-weight: bold;
+    color: #8a2be2;
+}
+
+/* Адаптив для планшетов и телефонов */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .sidebar {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-width: auto;
+        padding: 0;
+        position: static;
+        gap: 15px;
+        margin-bottom: 10px;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .search-bar-modern {
+        width: 100%;
+        margin: 0 0 30px 0;
+        max-width: none;
+        box-sizing: border-box;
+        padding: 12px 15px;
+    }
+
+    .search-header h1 {
+        font-size: 1.2rem;
+        text-align: center;
+        word-break: break-word;
+    }
+
+    /* Сетка: одна колонка на всех узких экранах */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .card-modern {
+        padding: 12px;
+    }
+}
+
+/* Для очень узких телефонов */
+@media (max-width: 480px) {
+    .icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .sidebar {
+        gap: 12px;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .search-bar-modern {
+        padding: 10px 12px;
+    }
+
+    .search-bar-modern input {
+        font-size: 0.9rem;
+    }
+
+    .gallery-grid {
+        gap: 15px;
+    }
+
+    .card-modern .user-name {
+        font-size: 0.9rem;
+    }
+}
+
+/* Адаптив для страницы профиля */
+@media (max-width: 768px) {
+    .profile-header-visual {
+        margin-bottom: 30px;
+    }
+
+    .profile-cover {
+        height: 120px; /* Уменьшаем высоту обложки */
+    }
+
+    .profile-main-info {
+        flex-direction: column;      /* Аватар и текст вертикально */
+        align-items: center;         /* Центрируем по центру */
+        padding: 0 20px;
+        margin-top: -50px;           /* Поднимаем аватар чуть выше */
+        gap: 15px;
+    }
+
+    .avatar-container {
+        margin-bottom: 5px;
+    }
+
+    .profile-avatar-wrapper {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-text-data {
+        text-align: center;          /* Текст по центру */
+        padding-bottom: 0;
+    }
+
+    .profile-text-data h2 {
+        font-size: 1.4rem;
+    }
+
+    .user-role-label {
+        font-size: 0.9rem;
+    }
+
+    .profile-stats-mini {
+        display: none;               /* Скрываем статистику на мобильных, если она есть */
+    }
+
+    .section-title {
+        margin-top: 20px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-avatar-wrapper {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-text-data h2 {
+        font-size: 1.2rem;
+    }
+
+    .edit-badge {
+        width: 28px;
+        height: 28px;
+    }
+
+    .edit-badge img {
+        width: 14px;
+    }
+}
+
+/* ===== АДАПТАЦИЯ ПРОФИЛЯ ПОД ОБЩИЙ СТИЛЬ ===== */
+/* Обложка — полупрозрачный градиент, как свечение */
+.profile-cover {
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.2));
+    backdrop-filter: blur(4px);
+    border-radius: 25px 25px 0 0;
+}
+
+/* Аватар — стеклянный, с тонкой фиолетовой границей */
+
+
+/* Имя и роль используют переменные темы */
+.user-nickname {
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.user-role-label {
+    color: #8a2be2;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* Секция работ — оставляем как в галерее */
+.section-title {
+    color: var(--text-main);
+    opacity: 0.7;
+    margin: 30px 0 20px;
+}
+
+
+.edit-badge:hover {
+    background: #8a2be2;
+    transform: scale(1.1);
+}
+
