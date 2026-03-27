@@ -12,19 +12,18 @@
     --icon-bg-hover: rgba(138, 43, 226, 0.1);
     --color-glow: rgba(138, 43, 226, 0.2);
     --glass-bg: rgba(255, 255, 255, 0.6);
-}
-
-:root,
-[data-theme="light"] {
     --profile-cover-gradient: linear-gradient(135deg, #8a2be2, #b75eff);
     --profile-avatar-bg: #ffffff;
     --profile-name-color: #1e272e;
     --profile-role-color: #8a2be2;
     --profile-card-bg: #ffffff;
     --profile-card-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    --modal-bg: rgba(243, 232, 255, 0.95);
+    --modal-text: #2c3e50;
+    --modal-input-bg: rgba(0,0,0,0.05);
+    --modal-border: rgba(138,43,226,0.4);
 }
 
-/* Темная тема (активируется через JS) */
 [data-theme="dark"] {
     --bg-app: #1a1a1a;
     --bg-main: #2d2d2d;
@@ -37,9 +36,12 @@
     --icon-filter: brightness(0) invert(1);
     --color-glow: rgba(63, 35, 87, 0.55);
     --glass-bg: rgba(0, 0, 0, 0.3);
+    --modal-bg: rgba(20, 20, 30, 0.95);
+    --modal-text: #ffffff;
+    --modal-input-bg: rgba(255,255,255,0.1);
+    --modal-border: rgba(138,43,226,0.5);
 }
 
-/* Системная тема */
 @media (prefers-color-scheme: dark) {
     [data-theme="system"] {
         --bg-app: #1a1a1a;
@@ -631,8 +633,6 @@ header h1 {
     margin-bottom: 30px;
     font-weight: normal;
 }
-
-
 
 @media (max-width: 768px) {
     .profile-header {
@@ -1419,7 +1419,6 @@ header h1 {
     animation: fadeInOverlay 0.3s ease;
 }
 
-
 .modal-glass-card .input-icon {
     filter: brightness(0) invert(1);
     opacity: 0.7;
@@ -1723,7 +1722,6 @@ header h1 {
         word-break: break-word;
     }
 
-    /* Сетка: одна колонка на всех узких экранах */
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -1734,7 +1732,6 @@ header h1 {
     }
 }
 
-/* Для очень узких телефонов */
 @media (max-width: 480px) {
     .icon {
         width: 45px;
@@ -1766,21 +1763,20 @@ header h1 {
     }
 }
 
-/* Адаптив для страницы профиля */
 @media (max-width: 768px) {
     .profile-header-visual {
         margin-bottom: 30px;
     }
 
     .profile-cover {
-        height: 120px; /* Уменьшаем высоту обложки */
+        height: 120px;
     }
 
     .profile-main-info {
-        flex-direction: column;      /* Аватар и текст вертикально */
-        align-items: center;         /* Центрируем по центру */
+        flex-direction: column;
+        align-items: center;
         padding: 0 20px;
-        margin-top: -50px;           /* Поднимаем аватар чуть выше */
+        margin-top: -50px;
         gap: 15px;
     }
 
@@ -1794,7 +1790,7 @@ header h1 {
     }
 
     .profile-text-data {
-        text-align: center;          /* Текст по центру */
+        text-align: center;
         padding-bottom: 0;
     }
 
@@ -1807,7 +1803,7 @@ header h1 {
     }
 
     .profile-stats-mini {
-        display: none;               /* Скрываем статистику на мобильных, если она есть */
+        display: none;
     }
 
     .section-title {
@@ -1836,18 +1832,12 @@ header h1 {
     }
 }
 
-/* ===== АДАПТАЦИЯ ПРОФИЛЯ ПОД ОБЩИЙ СТИЛЬ ===== */
-/* Обложка — полупрозрачный градиент, как свечение */
 .profile-cover {
     background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.2));
     backdrop-filter: blur(4px);
     border-radius: 25px 25px 0 0;
 }
 
-/* Аватар — стеклянный, с тонкой фиолетовой границей */
-
-
-/* Имя и роль используют переменные темы */
 .user-nickname {
     color: var(--text-main);
     font-weight: 700;
@@ -1859,19 +1849,16 @@ header h1 {
     letter-spacing: 1px;
 }
 
-/* Секция работ — оставляем как в галерее */
 .section-title {
     color: var(--text-main);
     opacity: 0.7;
     margin: 30px 0 20px;
 }
 
-
 .edit-badge:hover {
     background: #8a2be2;
     transform: scale(1.1);
 }
-
 
 .search-header {
     text-align: center;
@@ -1893,7 +1880,6 @@ header h1 {
     }
 }
 
-/* ===== ОБНОВЛЁННЫЕ НАСТРОЙКИ ===== */
 .settings-section {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(8px);
@@ -1918,7 +1904,6 @@ header h1 {
     opacity: 0.8;
 }
 
-/* Переключатель тем */
 .theme-switcher {
     display: flex;
     gap: 15px;
@@ -1952,7 +1937,6 @@ header h1 {
     box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
 }
 
-/* Кнопки аккаунта */
 .account-actions {
     display: flex;
     gap: 20px;
@@ -1980,7 +1964,6 @@ header h1 {
     box-shadow: 0 0 12px rgba(220, 53, 69, 0.4) !important;
 }
 
-/* Модальное окно (стили уже есть, но убедимся) */
 .modal-overlay .modal-glass-card.confirm-card {
     text-align: center;
     max-width: 450px;
@@ -2019,7 +2002,6 @@ header h1 {
     box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
 }
 
-/* Адаптив */
 @media (max-width: 768px) {
     .settings-section {
         padding: 20px;
@@ -2049,7 +2031,6 @@ header h1 {
     }
 }
 
-/* Модальное окно подтверждения — принудительно тёмный фон и белый текст */
 .modal-overlay .modal-glass-card.confirm-card {
     background: rgba(20, 20, 30, 0.95) !important;
     backdrop-filter: blur(20px);
@@ -2076,21 +2057,17 @@ header h1 {
     color: #8a2be2 !important;
 }
 
-/* ===== СТИЛИ ДЛЯ СТРАНИЦЫ ЗАГРУЗКИ ===== */
-/* Общий контейнер загрузки */
 .upload-container {
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
 }
 
-/* Иконки в полях — в светлой теме чёрные */
 .upload-container .input-icon {
     filter: var(--icon-filter);
     transition: filter 0.3s;
 }
 
-/* Для светлой темы явно делаем чёрные иконки */
 :root .upload-container .input-icon,
 [data-theme="light"] .upload-container .input-icon {
     filter: brightness(0) invert(0) !important;
@@ -2100,7 +2077,6 @@ header h1 {
     filter: brightness(0) invert(1) !important;
 }
 
-/* Текстовые поля: стилизуем как стеклянные с чёткими границами */
 .upload-container .input-modern {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 16px;
@@ -2115,7 +2091,6 @@ header h1 {
     background: rgba(255, 255, 255, 0.08);
 }
 
-/* Поля ввода и текстовая область */
 .upload-container input,
 .upload-container textarea {
     background: transparent;
@@ -2136,7 +2111,6 @@ header h1 {
     opacity: 0.5;
 }
 
-/* Динамические квадраты загрузки изображений */
 .images-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -2196,8 +2170,6 @@ header h1 {
     transform: scale(1.1);
 }
 
-/* ===== УЛУЧШЕНИЕ СТРАНИЦЫ ТОПА ДЛЯ СВЕТЛОЙ ТЕМЫ ===== */
-/* Базовая настройка для светлой темы */
 :root,
 [data-theme="light"] {
     --podium-bg: rgba(255, 255, 255, 0.5);
@@ -2209,25 +2181,20 @@ header h1 {
     --list-item-hover: rgba(138, 43, 226, 0.1);
 }
 
-/* Улучшение для тёмной темы: подсветка элементов списка при наведении */
 [data-theme="dark"] .top-list-item {
-    background: rgba(255, 255, 255, 0.08); /* светлее фона, чтобы было видно */
+    background: rgba(255, 255, 255, 0.08);
     transition: 0.2s;
 }
 [data-theme="dark"] .top-list-item:hover {
-    background: rgba(138, 43, 226, 0.3); /* фиолетовая подсветка */
+    background: rgba(138, 43, 226, 0.3);
     box-shadow: 0 0 12px rgba(138, 43, 226, 0.3);
-    transform: translateX(5px); /* лёгкий сдвиг */
+    transform: translateX(5px);
 }
-
-/* Убедимся, что лайки в тёмной теме хорошо видны (если ещё не задано) */
 [data-theme="dark"] .list-likes,
 [data-theme="dark"] .podium-likes {
     color: #ffffff !important;
     text-shadow: 0 0 3px rgba(138, 43, 226, 0.5);
 }
-
-/* Тёмная тема: все тексты в топе белые */
 [data-theme="dark"] .top-list-item .list-rank,
 [data-theme="dark"] .top-list-item .list-name,
 [data-theme="dark"] .top-list-item .list-role,
@@ -2235,8 +2202,6 @@ header h1 {
 [data-theme="dark"] .podium-likes {
     color: #ffffff !important;
 }
-
-/* Убираем возможное затемнение фона при наведении — делаем подсветку фиолетовой */
 [data-theme="dark"] .top-list-item {
     background: rgba(255, 255, 255, 0.08);
     transition: 0.2s;
@@ -2247,7 +2212,6 @@ header h1 {
     transform: translateX(5px);
 }
 
-/* Карточки пьедестала */
 .podium-item {
     background: var(--podium-bg);
     border: 1px solid var(--podium-border);
@@ -2271,7 +2235,6 @@ header h1 {
     border-color: rgba(205, 127, 50, 0.5);
 }
 
-/* Имена и лайки */
 .podium-name {
     color: var(--podium-text);
     font-weight: 600;
@@ -2282,7 +2245,6 @@ header h1 {
     font-weight: bold;
 }
 
-/* Список участников */
 .top-list-item {
     background: var(--list-item-bg);
     border: 1px solid var(--podium-border);
@@ -2310,7 +2272,6 @@ header h1 {
     font-weight: bold;
 }
 
-/* Адаптив для маленьких экранов */
 @media (max-width: 768px) {
     .podium {
         flex-direction: column;
@@ -2318,7 +2279,6 @@ header h1 {
         gap: 20px;
     }
 
-    /* Меняем порядок: сначала золото (1), потом серебро (2), потом бронза (3) */
     .podium-item.gold {
         order: 1;
     }
@@ -2351,8 +2311,6 @@ header h1 {
     }
 }
 
-/* ===== УЛУЧШЕНИЯ СТРАНИЦЫ ТОПА ===== */
-/* Анимация пульсации для золотого победителя */
 @keyframes goldGlow {
     0% {
         box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
@@ -2374,7 +2332,6 @@ header h1 {
     z-index: 2;
 }
 
-/* Анимация для короны */
 @keyframes crownFloat {
     0% {
         transform: translateY(-5px) rotate(-5deg);
@@ -2389,7 +2346,6 @@ header h1 {
     filter: drop-shadow(0 0 4px gold);
 }
 
-/* Пульсация бейджей */
 .rank-badge {
     animation: pulseBadge 1.5s infinite;
 }
@@ -2409,7 +2365,6 @@ header h1 {
     }
 }
 
-/* Ховер-эффекты для пьедестала */
 .podium-item {
     transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
 }
@@ -2418,7 +2373,6 @@ header h1 {
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Эффект для списка пользователей */
 .top-list-item {
     position: relative;
     transition: transform 0.2s, background 0.2s, padding-left 0.2s;
@@ -2441,7 +2395,6 @@ header h1 {
     transform: translateX(-10px);
 }
 
-/* Анимация появления для элементов */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -2460,3 +2413,401 @@ header h1 {
 .podium-item:nth-child(3) { animation-delay: 0.2s; }
 .top-list-item:nth-child(1) { animation-delay: 0.3s; }
 .top-list-item:nth-child(2) { animation-delay: 0.4s; }
+
+.modal-work-container {
+    background: var(--modal-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    width: 90%;
+    max-width: 1200px;
+    height: auto;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    animation: slideInModal 0.4s ease-out;
+    border: 1px solid rgba(138, 43, 226, 0.5);
+    overflow: hidden;
+}
+
+.work-main {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+
+.work-media-area {
+    flex: 1;
+    min-width: 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.slider-images {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.work-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+.slider-btn:hover {
+    background: #8a2be2;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.image-counter {
+    margin-top: 8px;
+    color: white;
+    background: rgba(0,0,0,0.5);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.work-sidebar {
+    flex: 0 0 auto;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    backdrop-filter: none;
+    padding: 0;
+    align-self: center;
+}
+
+.vertical-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    background: rgba(0,0,0,0.5);
+    padding: 15px 10px;
+    border-radius: 40px;
+    backdrop-filter: blur(8px);
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: white;
+}
+.action-btn img {
+    width: 28px;
+    filter: brightness(0) invert(1);
+}
+[data-theme="light"] .action-btn img {
+    filter: brightness(0) invert(0);
+}
+.like-count {
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.work-details-area {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 0 20px 20px 20px;
+}
+
+.work-author {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+    color: var(--modal-text);
+}
+.work-description {
+    margin: 8px 0;
+    line-height: 1.4;
+    color: var(--modal-text);
+}
+.work-link a {
+    color: #8a2be2;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+@media (max-width: 768px) {
+    .work-main {
+        gap: 12px;
+        padding: 15px;
+    }
+    .work-sidebar {
+        width: 60px;
+    }
+    .vertical-actions {
+        gap: 15px;
+        padding: 12px 6px;
+    }
+    .action-btn img {
+        width: 24px;
+    }
+    .work-details-area {
+        margin: 0 15px 15px 15px;
+        padding: 15px;
+    }
+}
+
+.modal-work-container,
+.work-details-area {
+    background: var(--modal-bg);
+    color: var(--modal-text);
+}
+
+.comments-modal {
+    max-width: 500px;
+    width: 90%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.comments-modal-title {
+    margin: 0 0 15px 0;
+    text-align: center;
+    color: var(--text-main);
+}
+.comments-list-full {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+.comments-list-full .comment-item {
+    background: rgba(138,43,226,0.1);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+.comment-author {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #8a2be2;
+}
+.comment-text {
+    color: var(--text-main);
+}
+.add-comment-full {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid rgba(138,43,226,0.3);
+    padding-top: 15px;
+}
+.add-comment-full textarea {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(138,43,226,0.3);
+    border-radius: 20px;
+    padding: 10px;
+    color: var(--text-main);
+    resize: none;
+}
+.send-comment-full {
+    background: #8a2be2;
+    border: none;
+    border-radius: 20px;
+    padding: 0 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.custom-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    z-index: 2000;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+    backdrop-filter: blur(8px);
+    border: 1px solid #8a2be2;
+}
+.custom-toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 768px) {
+    .comments-section {
+        display: none;
+    }
+    .comments-modal {
+        display: flex;
+    }
+}
+
+:root,
+[data-theme="light"] {
+    --modal-bg: rgba(243, 232, 255, 0.95);
+    --modal-text: #2c3e50;
+}
+[data-theme="dark"] {
+    --modal-bg: rgba(20, 20, 30, 0.95);
+    --modal-text: #ffffff;
+}
+.modal-work-container,
+.comments-modal,
+.custom-toast {
+    background: var(--modal-bg);
+    color: var(--modal-text);
+}
+.work-author,
+.work-description,
+.comment-text,
+.comments-modal-title,
+.comments-list-full .comment-text {
+    color: var(--modal-text);
+}
+.add-comment-full textarea {
+    background: var(--modal-input-bg);
+    border-color: var(--modal-border);
+    color: var(--modal-text);
+}
+.add-comment-full textarea::placeholder {
+    color: var(--modal-text);
+    opacity: 0.5;
+}
+.vertical-actions .action-btn img {
+    filter: brightness(0) invert(1);
+}
+
+
+.modal-work-container .like-btn img[src*="heart-filled"] {
+    filter: none !important;
+}
+.modal-work-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: 90vh;
+    overflow: hidden; /* скрываем лишнее, но внутренние элементы могут скроллиться */
+}
+
+.work-main {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    flex-shrink: 1;   /* разрешаем сжиматься */
+    min-height: 0;    /* важно для корректной работы flex */
+    overflow: hidden; /* чтобы изображение не вылезало */
+}
+
+.work-media-area {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 60vh; /* ограничиваем высоту изображения */
+    overflow: hidden;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.slider-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.work-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.work-sidebar {
+    flex-shrink: 0;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.work-details-area {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 0 20px 20px 20px;
+    flex-shrink: 0;      /* не сжимается */
+    max-height: 25vh;    /* ограничиваем высоту, если нужно */
+    overflow-y: auto;    /* прокрутка, если описание длинное */
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+    .work-main {
+        gap: 12px;
+        padding: 15px;
+    }
+    .work-media-area {
+        max-height: 50vh;
+    }
+    .work-details-area {
+        max-height: 30vh;
+        margin: 0 15px 15px 15px;
+        padding: 15px;
+    }
+}
